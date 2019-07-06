@@ -191,40 +191,51 @@ Capability value: Consists of 1 octet BFD flags as follows:
   </section>
 
   <section anchor="operation" title="Operation">
-  <t>
-      A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled MUST
-      include the BGP BFD capability with the “S” Bit set in the BGP capabilities it advertises.
+      <t>
+          A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled MUST
+          include the BGP BFD capability with the “S” Bit set in the BGP capabilities it advertises.
       </t>
       <t>
           A BGP speaker which supports BFD capability, examines the list
           of capabilities present in the Capabilities BFD Parameter that the speaker
           receives from its peer. If both the local and remote BGP speakers have BFD strict-mode enabled,
           the BGP finite state machine does not transition to the Established state from OpenSent or
-          OpenConfirm state <xref target="RFC4271"/> until the BFD session is in the Up state. This means
-          that a KEEPALIVE message is not sent nor is the KeepaliveTimer set.
+          OpenConfirm state <xref target="RFC4271"/> until the BFD session is in the Up state (see
+          below for AdminDown state). This means that a KEEPALIVE message is not sent nor is the
+          KeepaliveTimer set.
+      <\t>
+      <t>
           If the BFD session does not transition to the Up state, and the HoldTimer has been negotiated to
           a non-zero value, the BGP FSM will close the session appropriately.
           If the HoldTimer has been negotiated to a zero value, the session should be closed after a
           time of X. This time X is  referred as "BGP BFD Hold time". The proposed default BGP BFD
-          Hold time value is 30 seconds. BGP BFD Hold time value is configurable.
-          </t>
-          <t>
-             If BFD session is in the AdminDown state, then the BGP finite state machine will proceed
-             the state transition. This means that BFD session "AdminDown" state WILL NOT prevent the
-             BGP state transition to Established state from OpenConfirm.
+          Hold time value is 30 seconds. The BGP BFD Hold time value is configurable.
+      </t>
+      <t>
+          If BFD session is in the AdminDown state, then the BGP finite state machine will proceed
+          normally without input from BFD. This means that BFD session "AdminDown" state WILL NOT prevent
+          the BGP state transition to Established state from OpenConfirm.
+      </t>
+      <t>
+          Once the BFD session has transitioned to the Up state, the BGP FSM may proceed to
+          transition to the Established state from the OpenSent or OpenConfirm state appropriately.
+          I.e. a KEEPALIVE message is sent, and the KeepaliveTimer is started.
       </t>
       <t>
           If either BGP peer has not advertised the BFD Capability with strict-mode enabled, then a BFD session
           WILL NOT be required for the BGP session to reach Established state. This does not preclude usage
           of BFD after BGP session establishment <xref target="RFC5882"/>.
-  </t>
+      </t>
 
   </section>
   <section title="Manageability Considerations">
       <t>
-          Auto-configuration is possible for the BGP BFD restrict-mode enabling or disabling. However,
-          the configuration automation is out of the scope of this document. A NOTIFICATION message
-          error subcode which inticates BFD Hold timer expiration may be required for network management. 
+          Auto-configuration is possible for the enabling BGP BFD restrict-mode. However,
+          the configuration automation is out of the scope of this document.
+      </t>
+      <t>
+          A BGP NOTIFICATION message subcode indicating BFD Hold timer expiration may be required
+          for network management. (To be discussed in the next revision of this document.)
       </t>
 
   </section>
@@ -236,16 +247,16 @@ Capability value: Consists of 1 octet BFD flags as follows:
           RECOMMENDED when used to protect BGP-4 <xref target="RFC4271"/>.
       </t>
 
-      </section>
-      <section title="IANA Considerations">
-          <t>
+   </section>
+   <section title="IANA Considerations">
+       <t>
               This document defines a new BGP capability – BFD Capability. The Capability Code for BFD Capability is TBD.
-      </t>
-      <t>
+       </t>
+       <t>
           IANA is requested to establish a “BGP BFD Capability Flags” registry within
           the "Border Gateway Protocol (BGP) Parameters" grouping. The Registration Procedure should be Standards
           Action, the initial values as follows:
-  </t>
+       </t>
    <figure  >
             <preamble/>
             <artwork ><![CDATA[
