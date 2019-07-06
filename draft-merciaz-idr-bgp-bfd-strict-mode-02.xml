@@ -203,7 +203,7 @@ Capability value: Consists of 1 octet BFD flags as follows:
           OpenConfirm state <xref target="RFC4271"/> until the BFD session is in the Up state (see
           below for AdminDown state). This means that a KEEPALIVE message is not sent nor is the
           KeepaliveTimer set.
-      <\t>
+      </t>
       <t>
           If the BFD session does not transition to the Up state, and the HoldTimer has been negotiated to
           a non-zero value, the BGP FSM will close the session appropriately.
