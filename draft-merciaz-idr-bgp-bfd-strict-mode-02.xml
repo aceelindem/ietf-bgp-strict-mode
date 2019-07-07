@@ -3,6 +3,7 @@
         <!ENTITY rfc2119 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'> 
         <!ENTITY rfc4271 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml'> 
         <!ENTITY rfc5492 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml'> 
+        <!ENTITY rfc5880 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5880.xml'>
         <!ENTITY rfc5882 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5882.xml'> 
         <!ENTITY rfc8174 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml'> 
         ]>
@@ -243,7 +244,7 @@ Capability value: Consists of 1 octet BFD flags as follows:
       <t>
           The mechanism defined in this document interacts with the BGP finite state machine when so configured.
           The security considerations of BFD thus become considerations for BGP-4 <xref target="RFC4271"/>
-          so used. The use of the BFD Authentication mechanism defined in RFC5880 is thus
+          so used. The use of the BFD Authentication mechanism defined in <xref target="RFC5880"/> is thus
           RECOMMENDED when used to protect BGP-4 <xref target="RFC4271"/>.
       </t>
 
@@ -293,6 +294,7 @@ Capability value: Consists of 1 octet BFD flags as follows:
           &rfc4271;
           &rfc2119;
           &rfc5492;
+          &rfc5880;
           &rfc5882;
           &rfc8174;
       </references>
