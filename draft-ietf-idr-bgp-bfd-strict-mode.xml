@@ -1,11 +1,11 @@
-<?xml version='1.0'?>   
-    <!DOCTYPE rfc SYSTEM 'rfc2629.dtd' [ 
-        <!ENTITY rfc2119 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'> 
-        <!ENTITY rfc4271 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml'> 
-        <!ENTITY rfc5492 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml'> 
+<?xml version='1.0'?>
+    <!DOCTYPE rfc SYSTEM 'rfc2629.dtd' [
+        <!ENTITY rfc2119 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'>
+        <!ENTITY rfc4271 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml'>
+        <!ENTITY rfc5492 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml'>
         <!ENTITY rfc5880 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5880.xml'>
-        <!ENTITY rfc5882 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5882.xml'> 
-        <!ENTITY rfc8174 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml'> 
+        <!ENTITY rfc5882 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.5882.xml'>
+        <!ENTITY rfc8174 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml'>
         ]>
 <?rfc toc="yes"?>
 <?rfc tocompact="no"?>
@@ -15,33 +15,42 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
-<rfc category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-02">
+<rfc category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-04">
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    
-    <author initials="M" surname="Zheng" 
+
+    <author initials="M" surname="Zheng"
     fullname="Mercia Zheng">
-      <organization>Individual Contributor</organization>
-    
+      <organization>Ciena</organization>
+
       <address>
-       <email>merciaz.ietf@gmail.com</email>
+	<postal>
+          <street>3939 N. 1st Street</street>
+
+          <region>San Jose, CA 95134</region>
+
+          <country>UNITED STATES</country>
+	</postal>
+
+	<phone></phone>
+	<email>merciaz.ietf@gmail.com</email>
        </address>
     </author>
 
-    <author initials="A" surname="Lindem" 
+    <author initials="A" surname="Lindem"
     fullname="Acee Lindem">
       <organization>Cisco Systems</organization>
-    
+
       <address>
        <postal>
          <street>301 Midenhall Way</street>
-         
+
         <region>GARY, NC 27513</region>
-        
+
         <country>UNITED STATES</country>
        </postal>
-       
+
        <phone></phone>
        <email>acee@cisco.com</email>
       </address>
@@ -65,17 +74,17 @@
       </address>
     </author>
 
-    <author initials="A" surname="Fu" 
+    <author initials="A" surname="Fu"
     fullname="Albert Fu">
       <organization>Bloomberg L.P.</organization>
-    
+
       <address>
        <email>afu14@bloomberg.net</email>
        </address>
     </author>
 
 
-    <date/>    
+    <date/>
     <area>Routing</area>
     <workgroup>IDR Workgroup</workgroup>
     <abstract>
@@ -86,7 +95,7 @@
          from being established until a BFD session is established.
          It is referred to as BGP BFD “strict-mode”. BGP BFD strict-mode will be supported
          when both the local speaker and its remote peer are BFD strict-mode capable.
-         
+
     </t>
     </abstract>
   </front>
@@ -120,18 +129,18 @@
             announcing BFD parameters including a BGP speaker’s support for “strict-mode”, i.e., requiring a
             BFD session for BGP session establishment.
           </t>
-      </section>     
+      </section>
 
      <section title="Requirements Language">
        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
         "MAY", and "OPTIONAL" in this document are to be interpreted as
-        described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> 
+        described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
         when, and only when, they appear in all capitals, as shown here.</t>
      </section>
       <section title="BFD Strict-Mode Capability">
            <t>
-           The BGP Strict-Mode Capability <xref target="RFC5492"/> will allow a BGP speaker’s 
+           The BGP Strict-Mode Capability <xref target="RFC5492"/> will allow a BGP speaker’s
            to advertise this capability. The capability is defined as follows:
   </t>
    <t>
@@ -223,8 +232,8 @@
       </t>
       </section>
 
-    
-    
+
+
   </middle>
 
   <!--  *****BACK MATTER ***** -->
