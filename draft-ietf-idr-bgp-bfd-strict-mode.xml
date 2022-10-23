@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-07"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-08"
      ipr="trust200902"
      obsoletes=""
      updates=""
