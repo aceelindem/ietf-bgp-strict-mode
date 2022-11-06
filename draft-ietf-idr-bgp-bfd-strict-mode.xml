@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-08"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-09"
      ipr="trust200902"
      obsoletes=""
      updates=""
@@ -134,7 +134,7 @@
            to advertise this capability. The capability is defined as follows:
       </t>
       <t>
-   Capability code: TBD
+   Capability code: 74
       </t>
       <t>
         Capability length: 0 octets
@@ -210,7 +210,8 @@
     <section numbered="true" toc="default">
       <name>IANA Considerations</name>
       <t>
-              This document defines a new BGP capability - BFD Capability. The Capability Code for BFD Capability is TBD.
+        This document defines the BGP BFD capability. The Capability Code 74 has been assigned from
+        the First-Come-First-Served range (64-238) of the Capability Codes registry. 
       </t>
     </section>
     <section numbered="true" toc="default">
