@@ -80,8 +80,8 @@
       <t>
          This document specifies extensions to RFC4271 BGP-4 that enable a BGP speaker
          to negotiate additional Bidirectional Forwarding Detection (BFD) extensions using a
-         BGP capability. This BFD capability enables a BGP speaker to prevent a BGP session
-         from being established until a BFD session is established.
+         BGP capability. This BFD Strict-Mode Capability enables a BGP speaker to prevent
+         a BGP session from being established until a BFD session is established.
          It is referred to as BGP BFD "strict-mode". BGP BFD strict-mode will be supported
          when both the local speaker and its remote peer are BFD strict-mode capable.
 
@@ -144,13 +144,13 @@
       <name>BGP BFD Strict-Mode Procedures</name>
       <t>
           A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
-          MUST include the BFD strict-mode capability.
+          MUST include the BFD Strict-Mode Capability.
       </t>
       <t>
-          A BGP speaker which supports the BFD Strict-Mode capability, examines the list
+          A BGP speaker which supports the BFD Strict-Mode Capability, examines the list
           of capabilities present in the capabilities that the speaker
           receives from its peer. If both the local and remote BGP speakers include
-          the BFD strict-mode capability,
+          the BFD Strict-Mode Capability,
           the BGP finite state machine does not transition to the Established state from
           OpenConfirm state <xref target="RFC4271" format="default"/> until the BFD session is in the Up state (see
           below for AdminDown state). This means that a KEEPALIVE message is not sent nor is the
@@ -171,7 +171,7 @@
       <t>
         Once the BFD session has transitioned to the Up state, the BGP FSM may proceed to
         transition from the OpenConfirm state to state Established state. Once in the Established state,
-        a KEEPALIVE message is sent and the KeepaliveTimer for the BGP peer is started.
+        a KEEPALIVE message is sent and a KeepaliveTimer for the BGP peer is started.
       </t>
       <t>
         BGP strict-mode cannot be enabled unless BFD is configured for the
@@ -196,7 +196,7 @@
         will remain in Established state.
       </t>
       <t>
-        Since BFD strict mode is only applicable during BGP session
+        Since BFD strict-mode is only applicable during BGP session
         establishment, this inconsistency would not have an impact on the
         Established session unless the remote BGP peer is waiting in OpenConfirm state.
         To avoid this situation, BFD strict-mode SHOULD be modified
@@ -240,7 +240,7 @@
     <section numbered="true" toc="default">
       <name>IANA Considerations</name>
       <t>
-        This document defines the BGP BFD capability. The Capability Code 74 has been assigned from
+        This document defines the BGP BFD Strict-Mode Capability. The Capability Code 74 has been assigned from
         the First-Come-First-Served range (64-238) of the Capability Codes registry.
       </t>
     </section>
