@@ -141,7 +141,7 @@
       </t>
     </section>
     <section anchor="operation" numbered="true" toc="default">
-      <name>Operation</name>
+      <name>BGP BFD Strict-Mode Procedures</name>
       <t>
           A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
           MUST include the BFD strict-mode capability.
@@ -166,44 +166,62 @@
       <t>
           If BFD session is in the AdminDown state, then the BGP finite state machine will proceed
           normally without input from BFD. This means that BFD session "AdminDown" state WILL NOT prevent
-          the BGP state transition to Established state from OpenConfirm.
+          the BGP state transition from the OpenConfirm state to the Established state.
       </t>
       <t>
-        BGP strict-mode cannot be enabled unless BFD is configured for the BGP peer and if BFD is removed
-        for the BGP peer, then BGP strict-mode will also be disabled. Note that it is fully possible to have
-        BFD enabled between the peers without BGP strict-mode.
+        Once the BFD session has transitioned to the Up state, the BGP FSM may proceed to
+        transition from the OpenConfirm state to state Established state. Once in the Established state,
+        a KEEPALIVE message is sent and the KeepaliveTimer for the BGP peer is started.
       </t>
       <t>
-          Once the BFD session has transitioned to the Up state, the BGP FSM may proceed to
-          transition to the Established state from the OpenConfirm, i.e., a KEEPALIVE message is sent,
-          and the KeepaliveTimer is started.
+        BGP strict-mode cannot be enabled unless BFD is configured for the
+        BGP peer.  If BFD is removed for the BGP peer, then BGP strict-mode
+        will also be disabled.
       </t>
       <t>
-          If either BGP peer has not advertised the BFD Strict-Mode Capability, then a BFD session
-          WILL NOT be required for the BGP session to reach Established state. This does not preclude usage
-          of BFD after BGP session establishment <xref target="RFC5882" format="default"/>.
+        Note that it is fully possible to have BFD enabled between the peers without BGP strict-mode.
       </t>
       <t>
-        If BFD Strict-Mode is enabled or disabled for a BGP peer and the BGP session state
-        is not Established state, then the BGP will close the session and transition to Connect state.
+        If either BGP peer has not advertised the BFD Strict-Mode Capability, then a BFD session
+        WILL NOT be required for the BGP session to reach Established state. This does not preclude usage
+        of BFD after BGP session establishment <xref target="RFC5882" format="default"/>.
+      </t>
+      <t>
+        If BFD strict-mode is enabled or disabled for a BGP peer and the BGP session state
+        is not Established state, then the BGP will close the session.
       </t>
       <t>
         If the BFD Stict-Mode is enabled or disabled for a BGP peer and the BGP session
-        state is Established state, the local BFD Strict-Mode configuration will be modified but the session
-        will remain in Established state even if BFD Strict-Mode was negotiated for the session. Since
-        BFD Strict-Mode is only applicable during BGP session establishment, this inconsistency would not have
-        an impact on the session unless the remote BGP peer is waiting in OpenConfirm state. To avoid
-        this situation, BFD Strict-Mode SHOULD be modified consistently on both the local and remote BGP peers. 
+        state is Established state, the local BFD strict-mode configuration will be modified but the session
+        will remain in Established state.
       </t>
+      <t>
+        Since BFD strict mode is only applicable during BGP session
+        establishment, this inconsistency would not have an impact on the
+        Established session unless the remote BGP peer is waiting in OpenConfirm state.
+        To avoid this situation, BFD strict-mode SHOULD be modified
+        consistently on both the local and remote BGP peers.
+      </t>
+      <section numbered="true" toc="default">
+        <name>Stability Considerations</name>
+        <t>
+          The use of BGP BFD strict-mode along with mechanisms such as hold-down (a delay in the initial
+          BGP Establishment state following BFD session establishment) and/or
+          dampening (a delay in the BGP Establishment state following failure
+          detected by BFD) may help reduce the frequency of BGP session flaps and
+          therefore reduce the associated routing churn. The details of these
+          mechanisms are outside the scope of this document.
+        </t>
+      </section>
     </section>
     <section numbered="true" toc="default">
       <name>Manageability Considerations</name>
       <t>
-          Auto-configuration is possible for the enabling BGP BFD Strict-Mode. However,
+          Auto-configuration is possible for the enabling BGP BFD strict-mode. However,
           the configuration automation is out of the scope of this document.
       </t>
       <t>
-        To simplify troubleshoorting and avoid inconsistencies, it is RECOMMENDED that BFD Strict-Mode
+        To simplify troubleshoorting and avoid inconsistencies, it is RECOMMENDED that BFD strict-mode
         configuration be consistent for both BGP peers. 
       </t>
     </section>
