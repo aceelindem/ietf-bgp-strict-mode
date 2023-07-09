@@ -206,7 +206,7 @@
         <name>Closing BGP Sessions</name>
         <t>
           When BGP sessions are closed according to the procedures in this document, the session
-          should be terminated with a NOTIFICATION message with the Cease Code and the "BFD Down"
+          SHOULD be terminated with a NOTIFICATION message with the Cease Code and the "BFD Down"
           Subcode. (<xref target="I-D.ietf-idr-bfd-subcode"/>)  This informs the operator that
           interaction with BFD is the root cause of the BGP session being unable to move to the
           Established state.
