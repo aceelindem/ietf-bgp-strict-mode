@@ -72,6 +72,13 @@
     <author initials="A" surname="Fu" fullname="Albert Fu">
       <organization>Bloomberg L.P.</organization>
       <address>
+        <postal>
+          <street>731 Lexington Avenue</street>
+          <city>New York</city>
+          <region>NY</region>
+          <code>10022</code>
+          <country>USA</country>
+        </postal>
         <email>afu14@bloomberg.net</email>
       </address>
     </author>
