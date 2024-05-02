@@ -14,10 +14,10 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-12"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-13"
      ipr="trust200902"
      obsoletes=""
-     updates="RFC4271"
+     updates="4271"
      submissionType="IETF"
      xml:lang="en"
      tocInclude="true"
@@ -30,7 +30,7 @@
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-12"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-13"/>
     <author initials="M" surname="Zheng" fullname="Mercia Zheng">
       <organization>Ciena</organization>
       <address>
@@ -91,7 +91,7 @@
          to negotiate additional Bidirectional Forwarding Detection (BFD) extensions using a
          BGP capability. This BFD Strict-Mode Capability enables a BGP speaker to prevent
          a BGP session from being established until a BFD session is established.
-         It is referred to as BGP BFD "strict-mode". BGP BFD strict-mode will be supported
+         It is referred to as BFD "strict-mode". BFD strict-mode will be supported
          when both the local speaker and its remote peer are BFD strict-mode capable.
 
       </t>
@@ -119,12 +119,15 @@
       <t>
             To avoid situations which result in routing churn and to minimize the impact of network
             interruptions, it will be beneficial to disallow BGP to establish a session until BFD session
-            is successfully established and has stabilized. We refer to this mode of operation as BGP BFD "strict-mode".
+            is successfully established and has stabilized. We refer to this mode of operation as BFD "strict-mode".
             However, always using "strict-mode" would preclude BGP operation in an environment where not all routers
-            support BFD strict-mode or have BFD enabled. This document defines BGP "strict-mode" operation as
+            support BFD strict-mode or have BFD enabled.
+      </t>
+      <t>
+            This document defines BFD "strict-mode" operation as
             preventing BGP session establishment until both the local and remove speakers have a stable BFD session.
-            The document also specifies the BGP protocol extensions for BGP capability <xref target="RFC5492" format="default"/> for
-            announcing BFD parameters including a BGP speaker's support for "strict-mode", i.e., requiring a
+            The document also specifies a BGP capability <xref target="RFC5492" format="default"/> for
+            announcing BFD parameters including a BGP speaker's support for "strict-mode"; i.e., requiring a
             BFD session for BGP session establishment.
       </t>
     </section>
@@ -139,8 +142,7 @@
     <section numbered="true" toc="default">
       <name>BFD Strict-Mode Capability</name>
       <t>
-           The BGP Strict-Mode Capability <xref target="RFC5492" format="default"/> will allow a BGP speaker's
-           to advertise this capability. The capability is defined as follows:
+           The BFD Strict-Mode Capability is a BGP Capability <xref target="RFC5492"/> defined as follows:
       </t>
       <t>
    Capability code: 74
@@ -150,13 +152,13 @@
       </t>
     </section>
     <section anchor="operation" numbered="true" toc="default">
-      <name>BGP BFD Strict-Mode Procedures</name>
+      <name>BFD Strict-Mode Procedures</name>
       <t>
           A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
           MUST include the BFD Strict-Mode Capability.
       </t>
       <t>
-          A BGP speaker which supports the BFD Strict-Mode Capability, examines the list
+          A BGP speaker which supports the BFD Strict-Mode Capability examines the list
           of capabilities present in the capabilities that the speaker
           receives from its peer. If both the local and remote BGP speakers include
           the BFD Strict-Mode Capability,
@@ -168,12 +170,30 @@
       <t>
           If the BFD session does not transition to the Up state, and the HoldTimer has been negotiated to
           a non-zero value, the BGP FSM will close the session appropriately.
-          If the HoldTimer has been negotiated to a zero value, the session should be closed after a
-          time of X. This time X is  referred as "BGP BFD Hold time". The proposed default BGP BFD
-          Hold time value is 30 seconds. The BGP BFD Hold time value is configurable.
       </t>
       <t>
-          If BFD session is in the AdminDown state, then the BGP finite state machine will proceed
+          In order to prevent deadlock in situations where the BGP HoldTimer
+          has been negotiated to zero and BFD does not transition to Up, a "BFD
+          Hold Timer" is set.  When the HoldTimer has been negotiated to a zero
+          value in the Active or OpenSent state and the state machine is
+          transitioning to the OpenConfirm state, the BFD Hold Timer should be
+          set.  The proposed default BFD Hold time value is 30 seconds. The BFD
+          Hold time value is configurable.
+      </t>
+      <t>
+          When the BFD HoldTimer expires in the OpenConfirm state, the
+          procedures for "HoldTimer_Expires event (Event 10)" are followed.
+          If the BFD HoldTimer expires in any other state, it is ignored.
+          <!-- XXX JMH - discussion point, should we have a new subcode that's the BFD Hold Timer expired?  Should we use the recent BFD cease code in RFC 9384? -->
+      </t>
+      <t>
+          In the OpenConfirm state, when BFD has transitioned to Up and a
+          KEEPALIVE message has been received, the BFD HoldTimer is set to
+          zero, the BGP HoldTimer is set to its negotiated value and the state
+          is changed to Established.
+      </t>
+      <t>
+          If the BFD session is in the AdminDown state, then the BGP finite state machine will proceed
           normally without input from BFD. This means that BFD session "AdminDown" state WILL NOT prevent
           the BGP state transition from the OpenConfirm state to the Established state.
       </t>
@@ -183,12 +203,12 @@
         a KEEPALIVE message is sent and a KeepaliveTimer for the BGP peer is started.
       </t>
       <t>
-        BGP strict-mode cannot be enabled unless BFD is configured for the
+        BFD strict-mode cannot be enabled unless BFD is configured for the
         BGP peer.  If BFD is removed for the BGP peer, then BGP strict-mode
         will also be disabled.
       </t>
       <t>
-        Note that it is fully possible to have BFD enabled between the peers without BGP strict-mode.
+        Note that it is fully possible to have BFD enabled between the peers without BFD strict-mode.
       </t>
       <t>
         If either BGP peer has not advertised the BFD Strict-Mode Capability, then a BFD session
@@ -224,7 +244,7 @@
       <section numbered="true" toc="default">
         <name>Stability Considerations</name>
         <t>
-          The use of BGP BFD strict-mode along with mechanisms such as
+          The use of BFD strict-mode along with mechanisms such as
           hold-down (a delay in the initial BGP Establishment state following
           BFD session establishment) and/or dampening (a delay in the BGP
           Establishment state following failure detected by BFD) may help
@@ -232,7 +252,7 @@
           associated routing churn.
         </t>
         <t>
-          To avoid deadlock when utilizing both BFD hold-down and BGP BFD
+          To avoid deadlock when utilizing both BFD hold-down and BFD
           strict-mode, when strict-mode is enabled for a peer, the BGP FSM MUST
           be enabled.  That is, BFD hold-down procedures MUST NOT prevent BGP from
           establishing a connection with the remote BGP speaker.
@@ -243,7 +263,7 @@
           transition to the Established state from the OpenConfirm state after
           the locally configured BFD hold-down interval is observed.  That is,
           the BFD session has been Up for the desired amount of time.
-          Implementations MAY start the BFD session associated with the BGP
+          Implementations MAY start the BFD session associated with the BFD
           bfd-strict session prior to the BGP FSM starting.
         </t>
         <t>
@@ -265,7 +285,7 @@
           The behavior of BGP speakers implementing BFD hold-down without
           negotiating the BFD strict-mode feature is out of scope of this
           document.  However, the authors are aware that inconsistent behaviors
-          in BGP implementations for BFD hold-down without BGP BFD strict-mode
+          in BGP implementations for BFD hold-down without BFD strict-mode
           may result in BGP session deadlock.
         </t>
       </section>
@@ -273,12 +293,17 @@
     <section numbered="true" toc="default">
       <name>Manageability Considerations</name>
       <t>
-          Auto-configuration is possible for the enabling BGP BFD strict-mode. However,
+          Auto-configuration is possible for the enabling BFD strict-mode. However,
           the configuration automation is out of the scope of this document.
       </t>
       <t>
-        To simplify troubleshoorting and avoid inconsistencies, it is RECOMMENDED that BFD strict-mode
-        configuration be consistent for both BGP peers. 
+          To simplify troubleshooting and avoid inconsistencies, it is RECOMMENDED that BFD strict-mode
+          configuration be consistent for both BGP peers. 
+      </t>
+      <t>
+          An implementation's display of BGP finite state machine state SHOULD
+          provide visibility for the OpenConfirm state that BFD Up and/or
+          KEEPALIVE's are pending.
       </t>
     </section>
     <section numbered="true" toc="default">
@@ -296,7 +321,7 @@
     <section numbered="true" toc="default">
       <name>IANA Considerations</name>
       <t>
-        This document defines the BGP BFD Strict-Mode Capability. The Capability Code 74 has been assigned from
+        This document defines the BFD Strict-Mode Capability. The Capability Code 74 has been assigned from
         the First-Come-First-Served range (64-238) of the Capability Codes registry.
       </t>
     </section>
@@ -304,7 +329,7 @@
       <name>Acknowledgement</name>
       <t>
               The authors would like to acknowledge the review and inputs from Shyam Sethuram, Mohammed Mirza,
-              Bruno Decraene, Carlos Pignataro, Enke Chen, and Anup Kumar.
+              Bruno Decraene, Carlos Pignataro, Enke Chen, Anup Kumar, and Ketan Talalukar.
       </t>
     </section>
   </middle>
