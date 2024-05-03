@@ -355,7 +355,7 @@
                   <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
                   </ul>
                 </li>
-                <li>stays in the Connect state (enters BfdUpConnectPendingDelayOpen).</li> <!-- XXX JMH --> 
+                <li>stays in the Connect state (enters BfdUpConnectPendingDelayOpen).</li>
                 </ul>
               </li>
               <li><t>Else,</t>
@@ -414,8 +414,7 @@
 
               <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
               <ul>
-                <!-- XXX JMH cite the types -->
-                <li>sends a NOTIFICATION message with the error code Cease and error subcode BFD Down,</li>
+                <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
                 <li>drops the TCP connection,</li>
                 <li>releases all BGP resources,</li>
                 <li>increments the ConnectRetryCounter,</li>
@@ -446,7 +445,7 @@
 
           <section>
             <name>Changes to the Active State</name>
-            <!-- XXX JMH - the text here is effectively identical to the Connect state -->
+            <!-- the text here is effectively identical to the Connect state -->
 
             <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
@@ -506,7 +505,7 @@
                   <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
                   </ul>
                 </li>
-                <li>stays in the Active state (enters BfdUpActivePendingDelayOpen).</li> <!-- XXX JMH --> 
+                <li>stays in the Active state (enters BfdUpActivePendingDelayOpen).</li>
                 </ul>
               </li>
               <li><t>Else,</t>
@@ -565,8 +564,7 @@
 
               <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
               <ul>
-                <!-- XXX JMH cite the types -->
-                <li>sends a NOTIFICATION message with the error code Cease and error subcode BFD Down,</li>
+                <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
                 <li>drops the TCP connection,</li>
                 <li>releases all BGP resources,</li>
                 <li>increments the ConnectRetryCounter,</li>
@@ -680,8 +678,7 @@
 
               <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
               <ul>
-                <!-- XXX JMH cite the types -->
-                <li>sends a NOTIFICATION message with the error code Cease and error subcode BFD Down,</li>
+                <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
                 <li>drops the TCP connection,</li>
                 <li>releases all BGP resources,</li>
                 <li>increments the ConnectRetryCounter,</li>
@@ -699,8 +696,7 @@
 
               <!-- Procedure copies from OpenSent transitioning to Idle on Manual Stop -->
               <ul>
-                <!-- XXX JMH - subcode? -->
-                <li>sends the NOTIFICATION with a Cease,</li>
+                <li>sends the NOTIFICATION with an error code Cease (6), error subcode Other Configuration Change (6),</li>
                 <li>drops the TCP connection,</li>
                 <li>releases all BGP resources,</li>
                 <li>sets ConnectRetryCounter to zero,</li>
@@ -714,78 +710,31 @@
           <section>
             <name>Changes to the OpenConfirm State</name>
 
+            <section>
+              <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
 
+              <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
+              the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
+
+              <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
+              <ul>
+                <li>drops the TCP connection,</li>
+                <li>releases all BGP resources,</li>
+                <li>sets ConnectRetryCounter to zero,</li>
+                <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
+                <li>changes its state to Idle.</li>
+                <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
+              </ul>
+            </section>
           </section>
 
-        <section><name>Delete...</name>
-        <t>
-            In order to prevent deadlock in situations where the BGP HoldTimer
-            has been negotiated to zero and BFD does not transition to Up, a "BFD
-            Hold Timer" is set.  When the BGP HoldTimer has been negotiated to a zero
-            value in the Active or OpenSent state and the state machine is
-            transitioning to the OpenConfirm state, the BFD Hold Timer should be
-            set.  The proposed default BFD Hold time value is 30 seconds. The BFD
-            Hold time value is configurable.
-        </t>
-        <t>
-            When the BFD HoldTimer expires in the OpenConfirm state, the
-            procedures for "HoldTimer_Expires event (Event 10)" are followed.
-            If the BFD HoldTimer expires in any other state, it is ignored.
-            <!-- XXX JMH - discussion point, should we have a new subcode that's the BFD Hold Timer expired?  Should we use the recent BFD cease code in RFC 9384? -->
-        </t>
-        <t>
-            In the OpenConfirm state, when BFD has transitioned to Up and a
-            KEEPALIVE message has been received, the BFD HoldTimer is set to
-            zero, the BGP HoldTimer is set to its negotiated value and the state
-            is changed to Established.
-        </t>
-        <t>
-            If the BFD session is in the AdminDown state, then the BGP finite state machine will proceed
-            normally without input from BFD. This means that BFD session "AdminDown" state WILL NOT prevent
-            the BGP state transition from the OpenConfirm state to the Established state.
-        </t>
-        <t>
-          Once the BFD session has transitioned to the Up state, the BGP FSM may proceed to
-          transition from the OpenConfirm state to state Established state. Once in the Established state,
-          a KEEPALIVE message is sent and a KeepaliveTimer for the BGP peer is started.
-        </t>
-        <t>
-          BFD strict-mode cannot be enabled unless BFD is configured for the
-          BGP peer.  If BFD is removed for the BGP peer, then BGP strict-mode
-          will also be disabled.
-        </t>
-        <t>
-          Note that it is fully possible to have BFD enabled between the peers without BFD strict-mode.
-        </t>
-        <t>
-          If either BGP peer has not advertised the BFD Strict-Mode Capability, then a BFD session
-          WILL NOT be required for the BGP session to reach Established state. This does not preclude usage
-          of BFD after BGP session establishment <xref target="RFC5882" format="default"/>.
-        </t>
-        <t>
-          If BFD strict-mode is enabled or disabled for a BGP peer and the BGP session state
-          is not Established state, then BGP will close its session.
-        </t>
-        <t>
-          If BFD strict-mode is enabled or disabled for a BGP peer and the BGP session
-          state is in the Established state, the local BFD strict-mode configuration
-          will be modified but the session will remain in Established state.
-        </t>
-        <t>
-          Since BFD strict-mode is only applicable during BGP session
-          establishment, this inconsistency would not have an impact on the
-          Established session unless the remote BGP peer is waiting in OpenConfirm state.
-          To avoid this situation, BFD strict-mode SHOULD be modified
-          consistently on both the local and remote BGP peers.
-        </t>
-        </section>
       </section>
       <section numbered="true" toc="default">
         <name>Closing BGP Sessions</name>
         <t>
           When BGP sessions are closed according to the procedures in this document, the session
-          SHOULD be terminated with a NOTIFICATION message with the Cease Code and the "BFD Down"
-          Subcode; see <xref target="RFC9384"/>.  This informs the operator that
+          SHOULD be terminated with a NOTIFICATION message with the Cease Code (6) and the "BFD Down"
+          Subcode (10); see <xref target="RFC9384"/>.  This informs the operator that
           interaction with BFD is the root cause of the BGP session being unable to move to the
           Established state.
         </t>
