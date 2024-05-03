@@ -291,7 +291,6 @@
       <section>
         <name>Changes to the FSM</name>
 
-        <!-- XXX JMH - need to add to the "in response to any other event" to ignore Bfd events across each section -->
         <t>The following changes are made to section 8.2.2 in <xref target="RFC4271"/>:</t>
 
         <section>
@@ -711,6 +710,13 @@
           <name>Changes to the OpenConfirm State</name>
 
           <section>
+            <name>Handling BfdUp / Handling BfdAdminDown</name>
+
+            <t>The BfdUp and BfdAdminDown events are ignored in the OpenConfirm
+            state.</t>
+          </section>
+
+          <section>
             <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
 
             <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
@@ -725,6 +731,24 @@
               <li>changes its state to Idle.</li>
               <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
             </ul>
+          </section>
+        </section>
+        
+        <section>
+          <name>Changes to the Established State</name>
+
+          <section>
+            <name>Handling BfdUp / Handling BfdAdminDown</name>
+
+            <t>The BfdUp and BfdAdminDown events are ignored in the Established
+            state.</t>
+          </section>
+
+          <section>
+            <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+
+            <t>The BfdStrict_Enabled and BfdStrict_Disabled events are ignored
+            in the Established state.</t>
           </section>
         </section>
       </section>
