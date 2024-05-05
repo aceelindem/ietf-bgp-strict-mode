@@ -101,7 +101,7 @@
     <section numbered="true" toc="default">
       <name>Introduction</name>
       <t>
-         Bidirectional Forwarding Detection BFD <xref target="RFC5882"/> enables routers to monitor
+         Bidirectional Forwarding Detection BFD <xref target="RFC5880"/> enables routers to monitor
          data plane connectivity and to detect faults in the bidirectional forwarding path between them.
          This functionality is leveraged by routing protocols such as BGP <xref target="RFC4271" format="default"/> to rapidly
          react to topology changes in the face of path failures.
@@ -248,9 +248,9 @@
           <dt>Optional Attribute Status:</dt>
           <dd>
           <ul>
-          <li>the HoldTimer SHOULD NOT be running</li>
-          <li>the negotiated HoldTime SHOULD be zero</li>
-          <li>the BGP session state SHOULD be OpenConfirm</li>
+          <li>The HoldTimer SHOULD NOT be running.</li>
+          <li>The negotiated HoldTime SHOULD be zero.</li>
+          <li>The BGP session state SHOULD be in Connect, Active, or OpenSent.</li>
           </ul>
           </dd>
           </dl>
@@ -384,8 +384,8 @@
           <section>
             <name>Handling BfdUp / Handling BfdAdminDown</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X or the
-            BfdAdminDown event (Event TBD-X)), the local system checks the
+            <t>In response to the either the BfdUp event (Event TBD-X) or the
+            BfdAdminDown event (Event TBD-X), the local system checks the
             BfdHoldTimer attribute prior to processing.  If the BfdHoldTimer
             attribute is non-zero (BfdUpConnectPendingDelayOpen), the local system:</t>
 
@@ -534,8 +534,8 @@
           <section>
             <name>Handling BfdUp / Handling BfdAdminDown</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X or the
-            BfdAdminDown event (Event TBD-X)), the local system checks the
+            <t>In response to the either the BfdUp event (Event TBD-X) or the
+            BfdAdminDown event (Event TBD-X), the local system checks the
             BfdHoldTimer attribute prior to processing.  If the BfdHoldTimer
             attribute is non-zero (BfdUpActivePendingDelayOpen), the local system:</t>
 
@@ -658,8 +658,8 @@
           <section>
             <name>Handling BfdUp / Handling BfdAdminDown</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X or the
-            BfdAdminDown event (Event TBD-X)), and if BfdEnabled is TRUE, and
+            <t>In response to the either the BfdUp event (Event TBD-X) or the
+            BfdAdminDown event (Event TBD-X), and if BfdEnabled is TRUE, and
             BfdStrictNegotiated is TRUE:</t>
 
             <ul>
