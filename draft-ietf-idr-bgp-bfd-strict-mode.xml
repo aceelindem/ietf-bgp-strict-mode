@@ -123,7 +123,7 @@
       </t>
       <t>
             This document defines BFD "strict-mode" operation as
-            preventing BGP session establishment until both the local and remove speakers have a stable BFD session.
+            preventing BGP session establishment until both the local and remote speakers have a stable BFD session.
             The document also specifies a BGP capability <xref target="RFC5492" format="default"/> for
             announcing BFD parameters including a BGP speaker's support for "strict-mode"; i.e., requiring a
             BFD session for BGP session establishment.
