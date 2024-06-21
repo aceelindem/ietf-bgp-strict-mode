@@ -91,7 +91,7 @@
          to negotiate additional Bidirectional Forwarding Detection (BFD) extensions using a
          BGP capability. This BFD Strict-Mode Capability enables a BGP speaker to prevent
          a BGP session from being established until a BFD session is established.
-         This is referred to as BFD "strict-mode". 
+         This is referred to as BFD "strict-mode".
       </t>
     </abstract>
   </front>
@@ -115,7 +115,7 @@
             poor-quality link may result in the corresponding BFD session going up and down frequently.
       </t>
       <t>
-            To avoid situations which result in routing churn and to minimize the impact of network
+            To avoid situations that result in routing churn and to minimize the impact of network
             interruptions, it will be beneficial to disallow BGP to establish a session until BFD session
             is successfully established and has stabilized. We refer to this mode of operation as BFD "strict-mode".
             However, always using "strict-mode" would preclude BGP operation in an environment where not all routers
@@ -160,15 +160,16 @@
         </t>
         <t>
             A BGP speaker which supports the BFD Strict-Mode Capability examines the list
-            of 
+            of capabilities
             received from its peer. If both the local and remote BGP speakers include
-            the BFD Strict-Mode Capability, the BfdStrictNegotiated session attribute is set to TRUE.
+            the BFD Strict-Mode Capability, the BfdStrictNegotiated session attribute
+            (<xref target="session-attributes"/> below) is set to TRUE.
         </t>
       </section>
       <section>
         <name>BFD Strict-Mode BGP Finite State Machine Changes</name>
 
-        <section>
+        <section anchor="session-attributes">
           <name>Session Attributes</name>
 
           <t>Defined in this document:</t>
@@ -184,8 +185,8 @@
           <dd>Hold time value used for the BfdHoldTimer.  The default value for
               this attribute is 30 seconds and is user configurable.</dd>
           <dt>TBD-X) BfdStrictNegotiated:</dt>
-          <dd>A boolean value that is TRUE when the BFD strict-mode feature has
-              been capability negotiated for this BGP session.</dd>
+          <dd>A boolean value that is TRUE when the BFD strict-mode feature
+              capability has been successfully negotiated for this BGP session.</dd>
           </dl>
 
           <t>Defined in RFC 5880:</t>
@@ -267,7 +268,7 @@
           <dd>Optional</dd>
 
           <dt>Optional Attribute Status:</dt>
-          <dd></dd>
+          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
           </dl>
         </dd>
 
@@ -669,7 +670,7 @@
               <li>changes its state to OpenConfirm (leaves BfdUpOpenSentPending).</li>
             </ul>
           </section>
-          
+
           <section>
             <name>Handling BfdHoldTimer_Expires</name>
 
@@ -733,7 +734,7 @@
             </ul>
           </section>
         </section>
-        
+
         <section>
           <name>Changes to the Established State</name>
 
@@ -785,8 +786,13 @@
           transition to the Established state from the OpenConfirm state after
           the locally configured BFD hold-down interval is observed.  That is,
           the BFD session has been Up for the desired amount of time.
+        </t>
+        <t>
           Implementations MAY start the BFD session associated with the BFD
-          bfd-strict session prior to the BGP FSM starting.
+          bfd-strict session prior to the BGP FSM starting.  Similarly,
+          to support BFD hold-down requirements for detecting BFD session
+          stability, implementations SHOULD NOT immediately destroy BFD sessions
+          when associated BGP connections transition to Idle.
         </t>
         <t>
           It is RECOMMENDED that the BFD hold-down intervals used with BFD
@@ -820,7 +826,7 @@
       </t>
       <t>
           To simplify troubleshooting and avoid inconsistencies, it is RECOMMENDED that BFD strict-mode
-          configuration be consistent for both BGP peers. 
+          configuration be consistent for both BGP peers.
       </t>
       <t>
           An implementation's display of BGP finite state machine state SHOULD
