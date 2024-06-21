@@ -138,7 +138,7 @@
         when, and only when, they appear in all capitals, as shown here.</t>
     </section>
     <section numbered="true" toc="default">
-      <name>BFD Strict-Mode Capability</name>
+      <name>BFD Strict-Mode Capability Definition</name>
       <t>
            The BFD Strict-Mode Capability is a BGP Capability <xref target="RFC5492"/> defined as follows:
       </t>
@@ -153,7 +153,7 @@
       <name>BFD Strict-Mode Procedures</name>
 
       <section>
-        <name>BFD Strict-Mode Capability</name>
+        <name>BFD Strict-Mode Capability Negotiation</name>
         <t>
             A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
             MUST include the BFD Strict-Mode Capability in its OPEN message.
