@@ -803,10 +803,10 @@
           <name>Changes to the OpenConfirm State</name>
 
           <section>
-            <name>Handling BfdUp / Handling BfdAdminDown</name>
+            <name>Handling BfdAdminDown / Handling Bfd_Disabled / BfdUp</name>
 
-            <t>The BfdUp and BfdAdminDown events are ignored in the OpenConfirm
-            state.</t>
+            <t>The BfdAdminDown, Bfd_Disabled,  and BfdAdminDown events are
+               ignored in the OpenConfirm state.</t>
           </section>
 
           <section>
