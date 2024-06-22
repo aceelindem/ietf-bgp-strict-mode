@@ -321,6 +321,16 @@
         <t>The following changes are made to section 8.2.2 in <xref target="RFC4271"/>:</t>
 
         <section>
+          <name>Changes to the Idle State</name>
+
+          <t>In the "Idle State", the BfdAdminDown, BfdDown, BfdUp,
+              BfdStrict_Disabled, and BfdStrict_Enabled events are ignored.</t>
+
+          <t>In the "Idle State", the BfdHoldTimer_Expires event is ignored, but
+             only would occur as an error in the FSM implementation.</t>
+        </section>
+
+        <section>
           <name>Changes to the Connect State</name>
 
           <t>The BfdHoldTimer is reset to zero and stopped on any transition to the Idle state.</t>
