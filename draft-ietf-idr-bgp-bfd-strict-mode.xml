@@ -202,131 +202,130 @@
           </dl>
 
         </section>
-      </section>
+        <section>
+          <name>Events</name>
 
-      <section>
-        <name>Events</name>
-
-        <dl newline="true">
-        <dt>Event TBD-X: BfdAdminDown</dt>
-        <dd>
           <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD session associated with this BGP session has
-              transitioned to the AdminDown state.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
-              TRUE.</dd>
-          </dl>
-        </dd>
-
-        <dt>Event TBD-X: BfdDown</dt>
-
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD session associated with this BGP session has
-              transitioned to the Down state.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
-              TRUE.</dd>
-          </dl>
-        </dd>
-
-        <dt>Event TBD-X: BfdUp</dt>
-
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD session associated with this BGP session has
-              transitioned to the Up state.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
-              TRUE.</dd>
-          </dl>
-        </dd>
-
-        <dt>Event TBD-X: BfdHoldTimer_Expires</dt>
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD holdtimer, which is set when the negotiated BGP hold
-              time is zero, has expired.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
+          <dt>Event TBD-X: BfdAdminDown</dt>
           <dd>
-          <ul>
-          <li>The HoldTimer SHOULD NOT be running.</li>
-          <li>The negotiated HoldTime SHOULD be zero.</li>
-          <li>The BGP session state SHOULD be in Connect, Active, or OpenSent.</li>
-          </ul>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD session associated with this BGP session has
+                transitioned to the AdminDown state.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
+                TRUE.</dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: BfdDown</dt>
+
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD session associated with this BGP session has
+                transitioned to the Down state.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
+                TRUE.</dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: BfdUp</dt>
+
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD session associated with this BGP session has
+                transitioned to the Up state.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
+                TRUE.</dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: BfdHoldTimer_Expires</dt>
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD holdtimer, which is set when the negotiated BGP hold
+                time is zero, has expired.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>
+            <ul>
+            <li>The HoldTimer SHOULD NOT be running.</li>
+            <li>The negotiated HoldTime SHOULD be zero.</li>
+            <li>The BGP session state SHOULD be in Connect, Active, or OpenSent.</li>
+            </ul>
+            </dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: Bfd_Disabled</dt>
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BfdEnabled session attribute has been changed to FALSE.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd></dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: BfdStrict_Disabled</dt>
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD strict configuration for the BFD session has been
+                disabled.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.
+                If BfdEnabled is FALSE, this event MUST NOT occur.  Typically,
+                disabling BFD for the session will trigger a BfdAdminDown event
+                instead.
+            </dd>
+            </dl>
+          </dd>
+
+          <dt>Event TBD-X: BfdStrict_Enabled</dt>
+          <dd>
+            <dl newline="true">
+            <dt>Definition:</dt>
+            <dd>The BFD strict configuration for the BFD session has been
+                enabled.</dd>
+
+            <dt>Status:</dt>
+            <dd>Optional</dd>
+
+            <dt>Optional Attribute Status:</dt>
+            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
+            </dl>
           </dd>
           </dl>
-        </dd>
-
-        <dt>Event TBD-X: Bfd_Disabled</dt>
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BfdEnabled session attribute has been changed to FALSE.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd></dd>
-          </dl>
-        </dd>
-
-        <dt>Event TBD-X: BfdStrict_Disabled</dt>
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD strict configuration for the BFD session has been
-              disabled.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.
-              If BfdEnabled is FALSE, this event MUST NOT occur.  Typically,
-              disabling BFD for the session will trigger a BfdAdminDown event
-              instead.
-          </dd>
-          </dl>
-        </dd>
-
-        <dt>Event TBD-X: BfdStrict_Enabled</dt>
-        <dd>
-          <dl newline="true">
-          <dt>Definition:</dt>
-          <dd>The BFD strict configuration for the BFD session has been
-              enabled.</dd>
-
-          <dt>Status:</dt>
-          <dd>Optional</dd>
-
-          <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
-          </dl>
-        </dd>
-        </dl>
+        </section>
       </section>
 
       <section>
