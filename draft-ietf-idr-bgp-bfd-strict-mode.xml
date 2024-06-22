@@ -514,6 +514,81 @@
         <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
         <section>
+          <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
+
+          <t>In response to the
+          BfdAdminDown event (Event TBD-X),
+          the Bfd_Disabled event (Event TBD-X),
+          or the BfdUp event (Event TBD-X),
+          the local system checks to see if it is in the
+          BfdUpActivePendingDelayOpen sub-state.  If the FSM is in the
+          BfdUpActivePendingDelayOpen sub-state, the local system:</t>
+
+          <ul>
+            <li>sends a KEEPALIVE message,</li>
+            <li><t>if the HoldTimer initial value is non-zero,</t>
+              <ul>
+              <li>starts the KeepaliveTimer with the initial value and</li>
+              <li>resets the BfdHoldTimer value to zero,</li>
+              </ul>
+            </li>
+            <li>and changes its state to OpenConfirm (leaves BfdUpActivePendingDelayOpen).</li>
+          </ul>
+
+          <t>If the FSM is not in the BfdUpActivePendingDelayOpen sub-state,
+             the local system:</t>
+          <ul>
+            <li>stays in the Active state.</li>
+          </ul>
+        </section>
+
+        <section>
+          <name>Handling BfdDown</name>
+
+          <t>The BfdDown event (Event TBD-X) is ignored while in the Active
+             state.</t>
+
+          <t>A BFD session can transition to Down from the Init state,
+             indicating the session has failed to come Up, or transition to
+             Down from the AdminDown as part of starting the BFD state
+             machine.</t>
+        </section>
+
+        <section>
+          <name>Handling BfdHoldTimer_Expires</name>
+
+          <t>In response to the BfdHoldTimer_Expires event (Event TBD-X), the local system:</t>
+
+          <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
+          <ul>
+            <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
+            <li>drops the TCP connection,</li>
+            <li>releases all BGP resources,</li>
+            <li>increments the ConnectRetryCounter,</li>
+            <li>(optionally) performs peer oscillation damping if the DampPeerOscillations attribute is set to TRUE, and</li>
+            <li>changes its state to Idle.</li>
+            <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
+          </ul>
+        </section>
+
+        <section>
+          <name>Handling BfdStrict_ConfigChanged</name>
+
+          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+             the local system:</t>
+
+          <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
+          <ul>
+            <li>drops the TCP connection,</li>
+            <li>releases all BGP resources,</li>
+            <li>sets ConnectRetryCounter to zero,</li>
+            <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
+            <li>changes its state to Idle.</li>
+            <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
+          </ul>
+        </section>
+
+        <section>
           <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
           <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
@@ -594,81 +669,6 @@
           <t>If the value of the autonomous system field is the same as the local
           Autonomous System number, set the connection status to an internal
           connection; otherwise it will be "external".</t>
-        </section>
-
-        <section>
-          <name>Handling BfdDown</name>
-
-          <t>The BfdDown event (Event TBD-X) is ignored while in the Active
-             state.</t>
-
-          <t>A BFD session can transition to Down from the Init state,
-             indicating the session has failed to come Up, or transition to
-             Down from the AdminDown as part of starting the BFD state
-             machine.</t>
-        </section>
-
-        <section>
-          <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
-
-          <t>In response to the
-          BfdAdminDown event (Event TBD-X),
-          the Bfd_Disabled event (Event TBD-X),
-          or the BfdUp event (Event TBD-X),
-          the local system checks to see if it is in the
-          BfdUpActivePendingDelayOpen sub-state.  If the FSM is in the
-          BfdUpActivePendingDelayOpen sub-state, the local system:</t>
-
-          <ul>
-            <li>sends a KEEPALIVE message,</li>
-            <li><t>if the HoldTimer initial value is non-zero,</t>
-              <ul>
-              <li>starts the KeepaliveTimer with the initial value and</li>
-              <li>resets the BfdHoldTimer value to zero,</li>
-              </ul>
-            </li>
-            <li>and changes its state to OpenConfirm (leaves BfdUpActivePendingDelayOpen).</li>
-          </ul>
-
-          <t>If the FSM is not in the BfdUpActivePendingDelayOpen sub-state,
-             the local system:</t>
-          <ul>
-            <li>stays in the Active state.</li>
-          </ul>
-        </section>
-
-        <section>
-          <name>Handling BfdHoldTimer_Expires</name>
-
-          <t>In response to the BfdHoldTimer_Expires event (Event TBD-X), the local system:</t>
-
-          <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
-          <ul>
-            <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
-            <li>drops the TCP connection,</li>
-            <li>releases all BGP resources,</li>
-            <li>increments the ConnectRetryCounter,</li>
-            <li>(optionally) performs peer oscillation damping if the DampPeerOscillations attribute is set to TRUE, and</li>
-            <li>changes its state to Idle.</li>
-            <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
-          </ul>
-        </section>
-
-        <section>
-          <name>Handling BfdStrict_ConfigChanged</name>
-
-          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
-             the local system:</t>
-
-          <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
-          <ul>
-            <li>drops the TCP connection,</li>
-            <li>releases all BGP resources,</li>
-            <li>sets ConnectRetryCounter to zero,</li>
-            <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
-            <li>changes its state to Idle.</li>
-            <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
-          </ul>
         </section>
       </section>
 
