@@ -452,8 +452,8 @@
             BfdAdminDown event (Event TBD-X),
             the Bfd_Disabled event (Event TBD-X),
             or the BfdUp event (Event TBD-X) the
-            the local system checks the
-            BfdHoldTimer attribute prior to processing.  If the FSM is in the 
+            the local system checks to see if it is in the
+            BfdUpConnectPendingDelayOpen sub-state.  If the FSM is in the 
             BfdUpConnectPendingDelayOpen sub-state, the local system:</t>
 
             <ul>
@@ -465,6 +465,12 @@
                 </ul>
               </li>
               <li>and changes its state to OpenConfirm (leaves BfdUpConnectPendingDelayOpen).</li>
+            </ul>
+
+            <t>If the FSM is not in the BfdUpConnectPendingDelayOpen sub-state,
+               the local system:</t>
+            <ul>
+              <li>stays in the Connect state.</li>
             </ul>
           </section>
 
@@ -514,7 +520,7 @@
             <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
             <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
-            <t>In the "Connect State", the handling of Event 20, an OPEN message
+            <t>In the "Active State", the handling of Event 20, an OPEN message
                is received while the DelayOpenTimer is running, is revised as
                follows:</t>
 
@@ -594,12 +600,27 @@
           </section>
 
           <section>
-            <name>Handling BfdUp / Handling BfdAdminDown</name>
+            <name>Handling BfdDown</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X) or the
-            BfdAdminDown event (Event TBD-X), the local system checks the
-            BfdHoldTimer attribute prior to processing.  If the BfdHoldTimer
-            attribute is non-zero (BfdUpActivePendingDelayOpen), the local system:</t>
+            <t>The BfdDown event (Event TBD-X) is ignored while in the Active
+               state.</t>
+
+            <t>A BFD session can transition to Down from the Init state,
+               indicating the session has failed to come Up, or transition to
+               Down from the AdminDown as part of starting the BFD state
+               machine.</t>
+          </section>
+
+          <section>
+            <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+
+            <t>In response to the
+            BfdAdminDown event (Event TBD-X),
+            the Bfd_Disabled event (Event TBD-X),
+            or the BfdUp event (Event TBD-X),
+            the local system checks to see if it is in the
+            BfdUpActivePendingDelayOpen sub-state.  If the FSM is in the
+            BfdUpActivePendingDelayOpen sub-state, the local system:</t>
 
             <ul>
               <li>sends a KEEPALIVE message,</li>
@@ -612,7 +633,8 @@
               <li>and changes its state to OpenConfirm (leaves BfdUpActivePendingDelayOpen).</li>
             </ul>
 
-            <t>If the BfdHoldTimer attribute is zero, the local system:</t>
+            <t>If the FSM is not in the BfdUpActivePendingDelayOpen sub-state,
+               the local system:</t>
             <ul>
               <li>stays in the Active state.</li>
             </ul>
@@ -718,17 +740,26 @@
           </section>
 
           <section>
-            <name>Handling BfdUp / Handling BfdAdminDown</name>
+            <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X) or the
-            BfdAdminDown event (Event TBD-X), and if BfdEnabled is TRUE, and
-            BfdStrictNegotiated is TRUE:</t>
+            <t>In response to the 
+               the BfdAdminDown event (Event TBD-X),
+               the Bfd_Disabled event (Event TBD-X),
+               or the BfdUp event (Event TBD-X),
+               and the FSM is in the BfdUpOpenSentPending sub-state, the local
+               system:</t>
 
             <ul>
               <li>sends a KEEPALIVE message, and</li>
               <li>sets a KeepaliveTimer (via the text below)</li>
               <li>resets the BfdHoldTimer value to zero,</li>
               <li>changes its state to OpenConfirm (leaves BfdUpOpenSentPending).</li>
+            </ul>
+            
+            <t>If the FSM is not in the BfdUpOpenSentPending sub-state, the
+               local system:</t>
+            <ul>
+              <li>stays in the OpenSent state.</li>
             </ul>
           </section>
 
