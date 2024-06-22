@@ -152,13 +152,13 @@
           are to be used when BFD is enabled for this BGP session.  If
           BfdEnabled is not TRUE for this BGP session, this attribute has no
           impact.</dd>
+      <dt>TBD-X) BfdHoldTime:</dt>
+      <dd>Hold time value used for the BfdHoldTimer.  The default value for
+          this attribute is 30 seconds and is user configurable.</dd>
       <dt>TBD-X) BfdHoldTimer:</dt>
       <dd>Hold timer used when the BGP HoldTime has been negotiated to zero
           to ensure the BGP session terminates if the associated BFD session
           does not enter the Up state.</dd>
-      <dt>TBD-X) BfdHoldTime:</dt>
-      <dd>Hold time value used for the BfdHoldTimer.  The default value for
-          this attribute is 30 seconds and is user configurable.</dd>
       <dt>TBD-X) BfdStrictNegotiated:</dt>
       <dd>A boolean value that is TRUE when the BFD strict-mode feature
           capability has been successfully negotiated for this BGP session.</dd>
