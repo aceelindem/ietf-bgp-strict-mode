@@ -161,14 +161,16 @@
           does not enter the Up state.</dd>
       <dt>TBD-X) BfdStrictNegotiated:</dt>
       <dd>A boolean value that is TRUE when the BFD strict-mode feature
-          capability has been successfully negotiated for this BGP session.</dd>
+          capability has been successfully negotiated for this BGP session.
+          (See <xref target="capability-negotiation"/>.)</dd>
       </dl>
 
       <t>Defined in RFC 5880:</t>
       <dl newline="true">
       <dt>bfd.SessionState:</dt>
       <dd>The BFD session state associated with this BGP session when BFD
-          is configured and enabled for the session.</dd>
+          is configured and enabled for the session.
+          (See <xref target="RFC5880" section="6.8.1"/>.)</dd>
       </dl>
     </section>
 
@@ -204,13 +206,11 @@
         <dd>Optional</dd>
 
         <dt>Optional Attribute Status:</dt>
-        <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
-            TRUE.</dd>
+        <dd></dd>
         </dl>
       </dd>
 
       <dt>Event TBD-X: BfdUp</dt>
-
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -223,6 +223,20 @@
         <dt>Optional Attribute Status:</dt>
         <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
             TRUE.</dd>
+        </dl>
+      </dd>
+
+      <dt>Event TBD-X: Bfd_Disabled</dt>
+      <dd>
+        <dl newline="true">
+        <dt>Definition:</dt>
+        <dd>The BfdEnabled session attribute has been changed to FALSE.</dd>
+
+        <dt>Status:</dt>
+        <dd>Optional</dd>
+
+        <dt>Optional Attribute Status:</dt>
+        <dd></dd>
         </dl>
       </dd>
 
@@ -244,20 +258,6 @@
         <li>The BGP session state SHOULD be in Connect, Active, or OpenSent.</li>
         </ul>
         </dd>
-        </dl>
-      </dd>
-
-      <dt>Event TBD-X: Bfd_Disabled</dt>
-      <dd>
-        <dl newline="true">
-        <dt>Definition:</dt>
-        <dd>The BfdEnabled session attribute has been changed to FALSE.</dd>
-
-        <dt>Status:</dt>
-        <dd>Optional</dd>
-
-        <dt>Optional Attribute Status:</dt>
-        <dd></dd>
         </dl>
       </dd>
 
@@ -295,7 +295,7 @@
       </t>
     </section>
 
-    <section>
+    <section anchor="capability-negotiation">
       <name>BFD Strict-Mode Capability Negotiation</name>
       <t>
           A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
