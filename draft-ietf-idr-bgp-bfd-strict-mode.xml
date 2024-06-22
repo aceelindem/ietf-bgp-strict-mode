@@ -419,6 +419,18 @@
           </section>
 
           <section>
+            <name>Handling BfdDown</name>
+
+            <t>The BfdDown event (Event TBD-X) is ignored while in the Connect
+               state.</t>
+
+            <t>A BFD session can transition to Down from the Init state,
+               indicating the session has failed to come Up, or transition to
+               Down from the AdminDown as part of starting the BFD state
+               machine.</t>
+          </section>
+
+          <section>
             <name>Handling BfdUp / Handling BfdAdminDown</name>
 
             <t>In response to the either the BfdUp event (Event TBD-X) or the
