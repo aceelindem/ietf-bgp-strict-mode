@@ -177,6 +177,11 @@
           <dt>TBD-X) BfdEnabled:</dt>
           <dd>A boolean value that is TRUE when BFD is configured and enabled
               for this BGP session.</dd>
+          <dt>TBD-X) BfdStrictEnabled:</dt>
+          <dd>A boolean value that is TRUE when BGP BFD Strict-Mode procedures
+              are to be used when BFD is enabled for this BGP session.  If
+              BfdEnabled is not TRUE for this BGP session, this attribute has no
+              impact.</dd>
           <dt>TBD-X) BfdHoldTimer:</dt>
           <dd>Hold timer used when the BGP HoldTime has been negotiated to zero
               to ensure the BGP session terminates if the associated BFD session
@@ -203,13 +208,12 @@
         <name>Events</name>
 
         <dl newline="true">
-        <dt>Event TBD-X: BfdUp</dt>
-
+        <dt>Event TBD-X: BfdAdminDown</dt>
         <dd>
           <dl newline="true">
           <dt>Definition:</dt>
           <dd>The BFD session associated with this BGP session has
-              transitioned to the Up state.</dd>
+              transitioned to the AdminDown state.</dd>
 
           <dt>Status:</dt>
           <dd>Optional</dd>
@@ -220,12 +224,30 @@
           </dl>
         </dd>
 
-        <dt>Event TBD-X: BfdAdminDown</dt>
+        <dt>Event TBD-X: BfdDown</dt>
+
         <dd>
           <dl newline="true">
           <dt>Definition:</dt>
           <dd>The BFD session associated with this BGP session has
-              transitioned to the AdminDown state.</dd>
+              transitioned to the Down state.</dd>
+
+          <dt>Status:</dt>
+          <dd>Optional</dd>
+
+          <dt>Optional Attribute Status:</dt>
+          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to
+              TRUE.</dd>
+          </dl>
+        </dd>
+
+        <dt>Event TBD-X: BfdUp</dt>
+
+        <dd>
+          <dl newline="true">
+          <dt>Definition:</dt>
+          <dd>The BFD session associated with this BGP session has
+              transitioned to the Up state.</dd>
 
           <dt>Status:</dt>
           <dd>Optional</dd>
@@ -268,7 +290,11 @@
           <dd>Optional</dd>
 
           <dt>Optional Attribute Status:</dt>
-          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
+          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.
+              If BfdEnabled is FALSE, this event MUST NOT occur.  Typically,
+              disabling BFD for the session will trigger a BfdAdminDown event
+              instead.
+          </dd>
           </dl>
         </dd>
 
@@ -283,7 +309,7 @@
           <dd>Optional</dd>
 
           <dt>Optional Attribute Status:</dt>
-          <dd></dd>
+          <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
           </dl>
         </dd>
         </dl>
