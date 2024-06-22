@@ -429,7 +429,7 @@
             </section>
 
             <section>
-              <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+              <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
               <t>In response to the 
               BfdAdminDown event (Event TBD-X),
@@ -595,7 +595,7 @@
             </section>
 
             <section>
-              <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+              <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
               <t>In response to the
               BfdAdminDown event (Event TBD-X),
@@ -723,7 +723,7 @@
             </section>
 
             <section>
-              <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+              <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
               <t>In response to the 
                  the BfdAdminDown event (Event TBD-X),
@@ -801,7 +801,7 @@
             </section>
 
             <section>
-              <name>Handling BfdAdminDown / Handling Bfd_Disabled / BfdUp</name>
+              <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
               <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are
                  ignored in the OpenConfirm state.</t>
@@ -846,14 +846,14 @@
             </section>
 
             <section>
-              <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+              <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
               <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are ignored in
                  the Established state.</t>
             </section>
 
             <section>
-              <name>Handling BfdStrict_ConfigChanged / Handling BfdHoldTimer_Expires</name>
+              <name>Handling BfdStrict_ConfigChanged / BfdHoldTimer_Expires</name>
 
               <t>The BfdStrict_ConfigChange event is ignored
                  in the Established state.</t>
