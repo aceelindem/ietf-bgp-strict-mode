@@ -291,39 +291,24 @@
             </dl>
           </dd>
 
-          <dt>Event TBD-X: BfdStrict_Disabled</dt>
+          <dt>Event TBD-X: BfdStrict_ConfigChanged</dt>
           <dd>
             <dl newline="true">
             <dt>Definition:</dt>
-            <dd>The BFD strict configuration for the BFD session has been
-                disabled.</dd>
+            <dd>The configuration for the BFD strict configuration for the BGP
+                session has been changed.</dd>
 
             <dt>Status:</dt>
             <dd>Optional</dd>
 
             <dt>Optional Attribute Status:</dt>
-            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.
-                If BfdEnabled is FALSE, this event MUST NOT occur.  Typically,
-                disabling BFD for the session will trigger a BfdAdminDown event
+            <dd>If BfdEnabled is FALSE, this event MUST NOT occur.  When BFD has
+                been disabled, the local system will trigger a BfdAdminDown event
                 instead.
             </dd>
             </dl>
           </dd>
 
-          <dt>Event TBD-X: BfdStrict_Enabled</dt>
-          <dd>
-            <dl newline="true">
-            <dt>Definition:</dt>
-            <dd>The BFD strict configuration for the BFD session has been
-                enabled.</dd>
-
-            <dt>Status:</dt>
-            <dd>Optional</dd>
-
-            <dt>Optional Attribute Status:</dt>
-            <dd>The BfdEnabled attribute for this BGP session SHOULD be set to TRUE.</dd>
-            </dl>
-          </dd>
           </dl>
         </section>
 
@@ -336,7 +321,7 @@
             <name>Changes to the Idle State</name>
 
             <t>In the "Idle State", the BfdAdminDown, BfdDown, BfdUp,
-               Bfd_Disabled, BfdStrict_Disabled, and BfdStrict_Enabled events are
+               Bfd_Disabled, BfdStrict_ConfigChanged events are
                ignored.</t>
 
             <t>In the "Idle State", the BfdHoldTimer_Expires event is ignored, but
@@ -490,10 +475,10 @@
             </section>
 
             <section>
-              <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+              <name>Handling BfdStrict_ConfigChanged</name>
 
-              <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
-              the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
+              <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X)
+                 the local system:</t>
 
               <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
               <ul>
@@ -656,10 +641,10 @@
             </section>
 
             <section>
-              <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+              <name>Handling BfdStrict_ConfigChanged</name>
 
-              <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
-              the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
+              <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+                 the local system:</t>
 
               <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
               <ul>
@@ -779,10 +764,10 @@
             </section>
 
             <section>
-              <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+              <name>Handling BfdStrict_ConfigChanged</name>
 
-              <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
-              the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
+              <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+                 the local system:</t>
 
               <!-- Procedure copies from OpenSent transitioning to Idle on Manual Stop -->
               <ul>
@@ -823,10 +808,10 @@
             </section>
 
             <section>
-              <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+              <name>Handling BfdStrict_ConfigChanged</name>
 
-              <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
-              the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
+              <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+                 the local system:</t>
 
               <ul>
                 <li>sends a NOTIFICATION message with the error code Cease (6) and
@@ -868,10 +853,9 @@
             </section>
 
             <section>
-              <name>Handling BfdStrict_Enabled / Handling BfdStrict_Disabled /
-                    Handling BfdHoldTimer_Expires</name>
+              <name>Handling BfdStrict_ConfigChanged / Handling BfdHoldTimer_Expires</name>
 
-              <t>The BfdStrict_Enabled and BfdStrict_Disabled events are ignored
+              <t>The BfdStrict_ConfigChange event is ignored
                  in the Established state.</t>
 
               <t>The BfdHoldTimer_Expires event in the Established state is a FSM
