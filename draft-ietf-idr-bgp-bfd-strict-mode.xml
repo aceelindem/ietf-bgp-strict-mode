@@ -846,17 +846,38 @@
           <name>Changes to the Established State</name>
 
           <section>
-            <name>Handling BfdUp / Handling BfdAdminDown</name>
+            <name>Handling BfdDown</name>
 
-            <t>The BfdUp and BfdAdminDown events are ignored in the Established
-            state.</t>
+            <t>In response to the BfdDown event (Event TBD-X), the local
+               system:</t>
+            <ul>
+              <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
+              <li>drops the TCP connection,</li>
+              <li>deletes all routes associated with this connection,</li>
+              <li>releases all BGP resources,</li>
+              <li>increments the ConnectRetryCounter by 1,</li>
+              <li>(optionally) performs peer oscillation damping if the DampPeerOscillations
+                  attribute is set to TRUE, and</li>
+              <li>changes its state to Idle.</li>
+            </ul>
           </section>
 
           <section>
-            <name>Handling BfdStrict_Enabled / BfdStrict_Disabled</name>
+            <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
+
+            <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are ignored in
+               the Established state.</t>
+          </section>
+
+          <section>
+            <name>Handling BfdStrict_Enabled / Handling BfdStrict_Disabled /
+                  Handling BfdHoldTimer_Expires</name>
 
             <t>The BfdStrict_Enabled and BfdStrict_Disabled events are ignored
-            in the Established state.</t>
+               in the Established state.</t>
+
+            <t>The BfdHoldTimer_Expires event in the Established state is a FSM
+               error, and is ignored.</t>
           </section>
         </section>
       </section>
