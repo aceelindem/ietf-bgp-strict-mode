@@ -803,9 +803,24 @@
           <name>Changes to the OpenConfirm State</name>
 
           <section>
+            <name>Handling BfdDown</name>
+
+            <t>In response to the BfdDown event (Event TBD-X), the local
+               system:</t>
+            <ul>
+              <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
+              <li>drops the TCP connection,</li>
+              <li>releases all BGP resources,</li>
+              <li>sets ConnectRetryCounter to zero,</li>
+              <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
+              <li>changes its state to Idle.</li>
+            </ul>
+          </section>
+
+          <section>
             <name>Handling BfdAdminDown / Handling Bfd_Disabled / BfdUp</name>
 
-            <t>The BfdAdminDown, Bfd_Disabled,  and BfdAdminDown events are
+            <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are
                ignored in the OpenConfirm state.</t>
           </section>
 
@@ -815,14 +830,14 @@
             <t>In response to the BfdStrict_Enabled event (Event TBD-X) or
             the BfdStrict_Disabled event (Event TBD-X), the local system:</t>
 
-            <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
             <ul>
+              <li>sends a NOTIFICATION message with the error code Cease (6) and
+                  error subcode Other Configuration Change (6),</li>
               <li>drops the TCP connection,</li>
               <li>releases all BGP resources,</li>
               <li>sets ConnectRetryCounter to zero,</li>
               <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
               <li>changes its state to Idle.</li>
-              <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
             </ul>
           </section>
         </section>
