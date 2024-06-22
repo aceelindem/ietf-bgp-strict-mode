@@ -978,9 +978,10 @@
           configuration be consistent for both BGP peers.
       </t>
       <t>
-          An implementation's display of BGP finite state machine state SHOULD
-          provide visibility for the OpenConfirm state that BFD Up and/or BGP
-          KEEPALIVE's are pending.
+          This draft introduces sub-states in the existing BGP finite state
+          machine for tracking BFD session status inputs for strict mode operation.
+          Implementations SHOULD provide visibility for these sub-states in its
+          display of the BGP finite state machine.
       </t>
     </section>
     <section numbered="true" toc="default">
