@@ -329,8 +329,47 @@
     <section>
       <name>BGP FSM State Changes</name>
 
-      <t>The following changes are made to the BGP FSM defined in <xref
-      target="RFC4271" section="8.2.2"/>:</t>
+      <section>
+        <name>Overview of BFD Strict FSM Changes</name>
+
+        <t>When BFD is enabled, and BFD strict-mode is enabled and negotiated, the
+           BGP finite state machine is prevented from send a KEEPALIVE to the
+           remote BGP speaker and advancing to the OpenConfirm
+           state until the associated BFD session has reached the Up state.</t>
+
+        <t>In the FSM defined in <xref target="RFC4271"/>, sending of a
+           KEEPALIVE to the remote BGP speaker and advancement to the
+           OpenConfirm state happens:</t>
+
+        <ul>
+           <li>In the Connect state upon receiving an OPEN message and the
+               DelayOpenTimer is running.</li>
+           <li>In the Active state upon receiving an OPEN message and the
+               DelayOpenTimer is running.</li>
+           <li>In the OpenSent upon receiving an OPEN message.</li>
+        </ul>
+
+        <t>For each of these scenarios, when BFD is enabled, and BFD strict-mode
+           is negotiated, a sub-state is introduced to track the pending BFD Up
+           event:</t>
+        <ul>
+          <li>BfdUpConnectPendingDelayOpen</li>
+          <li>BfdUpActivePendingDelayOpen</li>
+          <li>BfdUpOpenSentPending</li>
+        </ul>
+
+        <t>If BFD strict-mode configuration is changed once the BGP FSM has
+           started executing, but has not reached the Established state, the
+           session is reset to the Idle state to ensure consistent behavior.
+           I.e., not unexpected timers are running, and the BGP session's
+           transition to Established is not lingering on a pending event.  Once
+           the BGP session has reached the Established state, changes to BFD
+           strict-mode are irrelevant since the work of this feature has been
+           completed.</t>
+
+        <t>The following changes are made to the BGP FSM defined in 
+           <xref target="RFC4271" section="8.2.2"/>:</t>
+      </section>
 
       <section>
         <name>Changes to the Idle State</name>
