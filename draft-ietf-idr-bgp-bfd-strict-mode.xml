@@ -279,6 +279,20 @@
           </dl>
         </dd>
 
+        <dt>Event TBD-X: Bfd_Disabled</dt>
+        <dd>
+          <dl newline="true">
+          <dt>Definition:</dt>
+          <dd>The BfdEnabled session attribute has been changed to FALSE.</dd>
+
+          <dt>Status:</dt>
+          <dd>Optional</dd>
+
+          <dt>Optional Attribute Status:</dt>
+          <dd></dd>
+          </dl>
+        </dd>
+
         <dt>Event TBD-X: BfdStrict_Disabled</dt>
         <dd>
           <dl newline="true">
@@ -324,7 +338,8 @@
           <name>Changes to the Idle State</name>
 
           <t>In the "Idle State", the BfdAdminDown, BfdDown, BfdUp,
-              BfdStrict_Disabled, and BfdStrict_Enabled events are ignored.</t>
+             Bfd_Disabled, BfdStrict_Disabled, and BfdStrict_Enabled events are
+             ignored.</t>
 
           <t>In the "Idle State", the BfdHoldTimer_Expires event is ignored, but
              only would occur as an error in the FSM implementation.</t>
@@ -431,12 +446,15 @@
           </section>
 
           <section>
-            <name>Handling BfdUp / Handling BfdAdminDown</name>
+            <name>Handling BfdAdminDown / Handling Bfd_Disabled / Handling BfdUp</name>
 
-            <t>In response to the either the BfdUp event (Event TBD-X) or the
-            BfdAdminDown event (Event TBD-X), the local system checks the
-            BfdHoldTimer attribute prior to processing.  If the BfdHoldTimer
-            attribute is non-zero (BfdUpConnectPendingDelayOpen), the local system:</t>
+            <t>In response to the 
+            BfdAdminDown event (Event TBD-X),
+            the Bfd_Disabled event (Event TBD-X),
+            or the BfdUp event (Event TBD-X) the
+            the local system checks the
+            BfdHoldTimer attribute prior to processing.  If the FSM is in the 
+            BfdUpConnectPendingDelayOpen sub-state, the local system:</t>
 
             <ul>
               <li>sends a KEEPALIVE message,</li>
@@ -447,11 +465,6 @@
                 </ul>
               </li>
               <li>and changes its state to OpenConfirm (leaves BfdUpConnectPendingDelayOpen).</li>
-            </ul>
-
-            <t>If the BfdHoldTimer attribute is zero, the local system:</t>
-            <ul>
-              <li>stays in the Connect state.</li>
             </ul>
           </section>
 
