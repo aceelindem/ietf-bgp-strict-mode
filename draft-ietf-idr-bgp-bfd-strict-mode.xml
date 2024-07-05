@@ -361,7 +361,7 @@
         <t>If BFD strict-mode configuration is changed once the BGP FSM has
            started executing, but has not reached the Established state, the
            session is reset to the Idle state to ensure consistent behavior.
-           I.e., not unexpected timers are running, and the BGP session's
+           I.e., no unexpected timers are running, and the BGP session's
            transition to Established is not lingering on a pending event.  Once
            the BGP session has reached the Established state, changes to BFD
            strict-mode are irrelevant since the work of this feature has been
