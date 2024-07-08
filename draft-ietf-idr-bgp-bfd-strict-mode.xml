@@ -367,7 +367,7 @@
            strict-mode are irrelevant since the work of this feature has been
            completed.</t>
 
-        <t>The following changes are made to the BGP FSM defined in 
+        <t>The following changes are made to the BGP FSM defined in
            <xref target="RFC4271" section="8.2.2"/>:</t>
       </section>
 
@@ -390,8 +390,7 @@
         <section>
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
-          <t>In response to the 
-          BfdAdminDown event (Event TBD-X),
+          <t>In response to the BfdAdminDown event (Event TBD-X),
           the Bfd_Disabled event (Event TBD-X),
           or the BfdUp event (Event TBD-X) the
           the local system checks to see if it is in the
@@ -470,59 +469,13 @@
              is received while the DelayOpenTimer is running, is revised as
              follows:</t>
 
-          <t>Old Text:</t>
-          <ul>
-          <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
-          <li>completes the BGP initialization,</li>
-          <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
-          <li>sends an OPEN message,</li>
-          <li>sends a KEEPALIVE message,</li>
-          <li><t>if the HoldTimer initial value is non-zero,</t>
+          <t>OLD</t>
+          <blockquote>
             <ul>
-            <li>starts the KeepaliveTimer with the initial value and</li>
-            <li>resets the HoldTimer to the negotiated value,</li>
-            </ul>
-          </li>
-          <li><t>else, if the HoldTimer initial value is zero,</t>
-            <ul>
-            <li>resets the KeepaliveTimer and</li>
-            <li>resets the HoldTimer value to zero,</li>
-            </ul>
-          </li>
-          <li>and changes its state to OpenConfirm.</li>
-          </ul>
-          <t>If the value of the autonomous system field is the same as the local
-          Autonomous System number, set the connection status to an internal
-          connection; otherwise it will be "external".</t>
-
-          <t>New Text:</t>
-
-          <ul>
-          <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
-          <li>completes the BGP initialization,</li>
-          <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
-          <li>sends an OPEN message,</li>
-          <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, and bfd.SessionState is neither Up nor AdminDown,</t>
-            <ul>
-            <li>DOES NOT send a KEEPALIVE message,</li>
-            <li><t>if the HoldTimer initial value is non-zero,</t>
-              <ul>
-              <li>DOES NOT start the KeepaliveTimer</li>
-              <li>resets the HoldTimer to the negotiated value,</li> <!-- now we're waiting on a new holdtimer event -->
-              </ul>
-            </li>
-            <li><t>else, if the HoldTimer initial value is zero,</t>
-              <ul>
-              <li>resets the KeepaliveTimer and</li>
-              <li>resets the HoldTimer value to zero,</li>
-              <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
-              </ul>
-            </li>
-            <li>stays in the Connect state (enters ConnectDelayOpenBfdUpPending).</li>
-            </ul>
-          </li>
-          <li><t>else,</t>
-            <ul>
+            <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
+            <li>completes the BGP initialization,</li>
+            <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
+            <li>sends an OPEN message,</li>
             <li>sends a KEEPALIVE message,</li>
             <li><t>if the HoldTimer initial value is non-zero,</t>
               <ul>
@@ -538,11 +491,61 @@
             </li>
             <li>and changes its state to OpenConfirm.</li>
             </ul>
-          </li>
-          </ul>
-          <t>If the value of the autonomous system field is the same as the local
-          Autonomous System number, set the connection status to an internal
-          connection; otherwise it will be "external".</t>
+            <t>If the value of the autonomous system field is the same as the local
+            Autonomous System number, set the connection status to an internal
+            connection; otherwise it will be "external".</t>
+          </blockquote>
+
+          <t>NEW</t>
+          <blockquote>
+            <ul>
+            <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
+            <li>completes the BGP initialization,</li>
+            <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
+            <li>sends an OPEN message,</li>
+            <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, and bfd.SessionState is neither Up nor AdminDown,</t>
+              <ul>
+              <li>DOES NOT send a KEEPALIVE message,</li>
+              <li><t>if the HoldTimer initial value is non-zero,</t>
+                <ul>
+                <li>DOES NOT start the KeepaliveTimer</li>
+                <li>resets the HoldTimer to the negotiated value,</li> <!-- now we're waiting on a new holdtimer event -->
+                </ul>
+              </li>
+              <li><t>else, if the HoldTimer initial value is zero,</t>
+                <ul>
+                <li>resets the KeepaliveTimer and</li>
+                <li>resets the HoldTimer value to zero,</li>
+                <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
+                </ul>
+              </li>
+              <li>stays in the Connect state (enters ConnectDelayOpenBfdUpPending).</li>
+              </ul>
+            </li>
+            <li><t>else,</t>
+              <ul>
+              <li>sends a KEEPALIVE message,</li>
+              <li><t>if the HoldTimer initial value is non-zero,</t>
+                <ul>
+                <li>starts the KeepaliveTimer with the initial value and</li>
+                <li>resets the HoldTimer to the negotiated value,</li>
+                </ul>
+              </li>
+              <li><t>else, if the HoldTimer initial value is zero,</t>
+                <ul>
+                <li>resets the KeepaliveTimer and</li>
+                <li>resets the HoldTimer value to zero,</li>
+                </ul>
+              </li>
+              <li>and changes its state to OpenConfirm.</li>
+              </ul>
+            </li>
+            </ul>
+            <t>
+              If the value of the autonomous system field is the same as the local Autonomous System number,
+              set the connection status to an internal connection; otherwise it will be "external".
+            </t>
+          </blockquote>
         </section>
       </section>
 
@@ -635,59 +638,13 @@
              is received while the DelayOpenTimer is running, is revised as
              follows:</t>
 
-          <t>Old Text:</t>
-          <ul>
-          <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
-          <li>completes the BGP initialization,</li>
-          <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
-          <li>sends an OPEN message,</li>
-          <li>sends a KEEPALIVE message,</li>
-          <li><t>if the HoldTimer initial value is non-zero,</t>
+          <t>OLD</t>
+          <blockquote>
             <ul>
-            <li>starts the KeepaliveTimer with the initial value and</li>
-            <li>resets the HoldTimer to the negotiated value,</li>
-            </ul>
-          </li>
-          <li><t>else, if the HoldTimer initial value is zero,</t>
-            <ul>
-            <li>resets the KeepaliveTimer and</li>
-            <li>resets the HoldTimer value to zero,</li>
-            </ul>
-          </li>
-          <li>and changes its state to OpenConfirm.</li>
-          </ul>
-          <t>If the value of the autonomous system field is the same as the local
-          Autonomous System number, set the connection status to an internal
-          connection; otherwise it will be "external".</t>
-
-          <t>New Text:</t>
-
-          <ul>
-          <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
-          <li>completes the BGP initialization,</li>
-          <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
-          <li>sends an OPEN message,</li>
-          <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, and bfd.SessionState is neither Up nor AdminDown,</t>
-            <ul>
-            <li>DOES NOT send a KEEPALIVE message,</li>
-            <li><t>if the HoldTimer initial value is non-zero,</t>
-              <ul>
-              <li>DOES NOT start the KeepaliveTimer</li>
-              <li>resets the HoldTimer to the negotiated value,</li> <!-- now we're waiting on a new holdtimer event -->
-              </ul>
-            </li>
-            <li><t>else, if the HoldTimer initial value is zero,</t>
-              <ul>
-              <li>resets the KeepaliveTimer and</li>
-              <li>resets the HoldTimer value to zero,</li>
-              <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
-              </ul>
-            </li>
-            <li>stays in the Active state (enters ActiveDelayOpenBfdUpPending).</li>
-            </ul>
-          </li>
-          <li><t>else,</t>
-            <ul>
+            <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
+            <li>completes the BGP initialization,</li>
+            <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
+            <li>sends an OPEN message,</li>
             <li>sends a KEEPALIVE message,</li>
             <li><t>if the HoldTimer initial value is non-zero,</t>
               <ul>
@@ -703,11 +660,62 @@
             </li>
             <li>and changes its state to OpenConfirm.</li>
             </ul>
-          </li>
-          </ul>
-          <t>If the value of the autonomous system field is the same as the local
-          Autonomous System number, set the connection status to an internal
-          connection; otherwise it will be "external".</t>
+            <t>
+              If the value of the autonomous system field is the same as the local Autonomous System number,
+              set the connection status to an internal connection; otherwise it will be "external".
+            </t>
+          </blockquote>
+
+          <t>NEW</t>
+          <blockquote>
+            <ul>
+            <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
+            <li>completes the BGP initialization,</li>
+            <li>stops and clears the DelayOpenTimer (sets the value to zero),</li>
+            <li>sends an OPEN message,</li>
+            <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, and bfd.SessionState is neither Up nor AdminDown,</t>
+              <ul>
+              <li>DOES NOT send a KEEPALIVE message,</li>
+              <li><t>if the HoldTimer initial value is non-zero,</t>
+                <ul>
+                <li>DOES NOT start the KeepaliveTimer</li>
+                <li>resets the HoldTimer to the negotiated value,</li> <!-- now we're waiting on a new holdtimer event -->
+                </ul>
+              </li>
+              <li><t>else, if the HoldTimer initial value is zero,</t>
+                <ul>
+                <li>resets the KeepaliveTimer and</li>
+                <li>resets the HoldTimer value to zero,</li>
+                <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
+                </ul>
+              </li>
+              <li>stays in the Active state (enters ActiveDelayOpenBfdUpPending).</li>
+              </ul>
+            </li>
+            <li><t>else,</t>
+              <ul>
+              <li>sends a KEEPALIVE message,</li>
+              <li><t>if the HoldTimer initial value is non-zero,</t>
+                <ul>
+                <li>starts the KeepaliveTimer with the initial value and</li>
+                <li>resets the HoldTimer to the negotiated value,</li>
+                </ul>
+              </li>
+              <li><t>else, if the HoldTimer initial value is zero,</t>
+                <ul>
+                <li>resets the KeepaliveTimer and</li>
+                <li>resets the HoldTimer value to zero,</li>
+                </ul>
+              </li>
+              <li>and changes its state to OpenConfirm.</li>
+              </ul>
+            </li>
+            </ul>
+            <t>
+              If the value of the autonomous system field is the same as the local Autonomous System number,
+              set the connection status to an internal connection; otherwise it will be "external".
+            </t>
+          </blockquote>
         </section>
       </section>
 
@@ -732,7 +740,7 @@
             <li>resets the BfdHoldTimer value to zero,</li>
             <li>changes its state to OpenConfirm (leaves OpenSentBfdUpPending).</li>
           </ul>
-          
+
           <t>If the FSM is not in the OpenSentBfdUpPending sub-state, the
              local system:</t>
           <ul>
@@ -801,60 +809,65 @@
         <section>
           <name>Handling Event 19, BGPOpen</name>
 
-          <t>Old Text:</t>
-          <t>When an OPEN message is received, all fields are checked for
-          correctness.  If there are no errors in the OPEN message (Event
-          19), the local system:</t>
+          <t>OLD</t>
+          <blockquote>
+            <t>
+              When an OPEN message is received, all fields are checked for correctness.
+              If there are no errors in the OPEN message (Event 19), the local system:
+            </t>
 
-          <ul>
-            <li>resets the DelayOpenTimer to zero,</li>
-            <li>sets the BGP ConnectRetryTimer to zero,</li>
-            <li>sends a KEEPALIVE message, and</li>
-            <li>sets a KeepaliveTimer (via the text below)</li>
-            <li>sets the HoldTimer according to the negotiated value (see Section 4.2), - changes its state to OpenConfirm.</li>
-          </ul>
-          <t>If the negotiated hold time value is zero, then the HoldTimer
-          and KeepaliveTimer are not started.  If the value of the
-          Autonomous System field is the same as the local Autonomous
-          System number, then the connection is an "internal" connection;
-          otherwise, it is an "external" connection.</t>
+            <ul>
+              <li>resets the DelayOpenTimer to zero,</li>
+              <li>sets the BGP ConnectRetryTimer to zero,</li>
+              <li>sends a KEEPALIVE message, and</li>
+              <li>sets a KeepaliveTimer (via the text below)</li>
+              <li>sets the HoldTimer according to the negotiated value (see Section 4.2), - changes its state to OpenConfirm.</li>
+            </ul>
+            <t>If the negotiated hold time value is zero, then the HoldTimer
+            and KeepaliveTimer are not started.  If the value of the
+            Autonomous System field is the same as the local Autonomous
+            System number, then the connection is an "internal" connection;
+            otherwise, it is an "external" connection.</t>
+          </blockquote>
 
-          <t>New Text:</t>
-          <t>When an OPEN message is received, all fields are checked for
-          correctness.  If there are no errors in the OPEN message (Event
-          19), the local system:</t>
+          <t>NEW</t>
+          <blockquote>
+            <t>
+              When an OPEN message is received, all fields are checked for correctness.
+              If there are no errors in the OPEN message (Event 19), the local system:
+            </t>
 
-          <ul>
-            <li>resets the DelayOpenTimer to zero,</li>
-            <li>sets the BGP ConnectRetryTimer to zero,</li>
-            <li>sets the HoldTimer according to the negotiated value (see Section 4.2), </li>
-            <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE,
-                   and bfd.SessionState is neither Up nor AdminDown,</t>
-              <ul>
-                <li>DOES NOT send a KEEPALIVE message, and</li>
-                <li>DOES NOT start the KeepaliveTimer</li>
-                <li><t>if the HoldTimer negotiated value is zero,</t>
-                  <ul>
-                    <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
-                  </ul>
-                </li>
-                <li>stays in OpenSent state (OpenSentBfdUpPending)</li>
-              </ul>
-            </li>
-            <li><t>else,</t>
-              <ul>
-                <li>sends a KEEPALIVE message, and</li>
-                <li>sets a KeepaliveTimer (via the text below)</li>
-                <li>changes its state to OpenConfirm.</li>
-              </ul>
-            </li>
-          </ul>
-          <t>If the negotiated hold time value is zero, then the HoldTimer
-          and KeepaliveTimer are not started.  If the value of the
-          Autonomous System field is the same as the local Autonomous
-          System number, then the connection is an "internal" connection;
-          otherwise, it is an "external" connection.</t>
-
+            <ul>
+              <li>resets the DelayOpenTimer to zero,</li>
+              <li>sets the BGP ConnectRetryTimer to zero,</li>
+              <li>sets the HoldTimer according to the negotiated value (see Section 4.2), </li>
+              <li><t>If BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE,
+                     and bfd.SessionState is neither Up nor AdminDown,</t>
+                <ul>
+                  <li>DOES NOT send a KEEPALIVE message, and</li>
+                  <li>DOES NOT start the KeepaliveTimer</li>
+                  <li><t>if the HoldTimer negotiated value is zero,</t>
+                    <ul>
+                      <li>starts the BfdHoldTimer with the value BfdHoldTime,</li>
+                    </ul>
+                  </li>
+                  <li>stays in OpenSent state (OpenSentBfdUpPending)</li>
+                </ul>
+              </li>
+              <li><t>else,</t>
+                <ul>
+                  <li>sends a KEEPALIVE message, and</li>
+                  <li>sets a KeepaliveTimer (via the text below)</li>
+                  <li>changes its state to OpenConfirm.</li>
+                </ul>
+              </li>
+            </ul>
+            <t>
+              If the negotiated hold time value is zero, then the HoldTimer and KeepaliveTimer are not started.
+              If the value of the Autonomous System field is the same as the local Autonomous System number,
+              then the connection is an "internal" connection; otherwise, it is an "external" connection.
+            </t>
+          </blockquote>
         </section>
       </section>
 
