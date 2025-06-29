@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-14"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-15"
      ipr="trust200902"
      obsoletes=""
      updates="4271"
@@ -30,7 +30,7 @@
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-14"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-15"/>
     <author initials="M" surname="Zheng" fullname="Mercia Zheng">
       <organization>Ciena</organization>
       <address>
@@ -44,7 +44,7 @@
       </address>
     </author>
     <author initials="A" surname="Lindem" fullname="Acee Lindem">
-      <organization>LabN Consulting, L.L.C.</organization>
+      <organization>Arrcus, Inc</organization>
       <address>
         <postal>
           <street>301 Midenhall Way</street>
