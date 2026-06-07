@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-16"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-17"
      ipr="trust200902"
      obsoletes=""
      updates="4271"
@@ -30,7 +30,7 @@
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-16"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-17"/>
     <author initials="M" surname="Zheng" fullname="Mercia Zheng">
       <organization>Ciena</organization>
       <address>
@@ -56,17 +56,9 @@
       </address>
     </author>
     <author initials="J" surname="Haas" fullname="Jeffrey Haas">
-      <organization>Juniper Networks, Inc.</organization>
+      <organization>HPE</organization>
       <address>
-        <postal>
-          <street>1133 Innovation Way</street>
-          <city>Sunnyvale</city>
-          <region>CA</region>
-          <code>94089</code>
-          <country>USA</country>
-        </postal>
-        <phone/>
-        <email>jhaas@juniper.net</email>
+        <email>jeffrey.haas@hpe.com</email>
       </address>
     </author>
     <author initials="A" surname="Fu" fullname="Albert Fu">
