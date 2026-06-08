@@ -490,6 +490,23 @@
 
           <t>New Text:</t>
 
+	  <t>If the FSM is in the ActiveDelayOpenBfdUpPending sub-state, the
+	  reception of a second OPEN message is a FSM error.  The local
+	  system:</t>
+
+	  <ul>
+	    <li>sends the NOTIFICATION with the Error Code Finite State Machine Error,</li>
+	    <li>sets the ConnectRetryTimer to zero,</li>
+	    <li>releases all BGP resources,</li>
+	    <li>drops the TCP connection,</li>
+	    <li>increments the ConnectRetryCounter by 1,</li>
+	    <li>(optionally) performs peer oscillation damping if the
+	        DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>changes its state to Idle.</li>
+	  </ul>
+
+	  <t>If the FSM is NOT in the ActiveDelayOpenBfdUpPending, the local system:</t>
+
           <ul>
           <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
           <li>completes the BGP initialization,</li>
@@ -654,6 +671,23 @@
           connection; otherwise it will be "external".</t>
 
           <t>New Text:</t>
+
+	  <t>If the FSM is in the ConnectDelayOpenBfdUpPending sub-state, the
+	  reception of a second OPEN message is a FSM error.  The local
+	  system:</t>
+
+	  <ul>
+	    <li>sends the NOTIFICATION with the Error Code Finite State Machine Error,</li>
+	    <li>sets the ConnectRetryTimer to zero,</li>
+	    <li>releases all BGP resources,</li>
+	    <li>drops the TCP connection,</li>
+	    <li>increments the ConnectRetryCounter by 1,</li>
+	    <li>(optionally) performs peer oscillation damping if the
+	        DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>changes its state to Idle.</li>
+	  </ul>
+
+	  <t>If the FSM is NOT in the ConnectDelayOpenBfdUpPending, the local system:</t>
 
           <ul>
           <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
@@ -834,6 +868,25 @@
           otherwise, it is an "external" connection.</t>
 
           <t>New Text:</t>
+
+	  <t>If the FSM is in the OpenSentBfdUpPending sub-state or the
+	  OpenSentConfirmedBfdUpPending sub-state, the reception of a second
+	  OPEN message is a FSM error.  The local system:</t>
+
+	  <ul>
+	    <li>sends the NOTIFICATION with the Error Code Finite State Machine Error,</li>
+	    <li>sets the ConnectRetryTimer to zero,</li>
+	    <li>releases all BGP resources,</li>
+	    <li>drops the TCP connection,</li>
+	    <li>increments the ConnectRetryCounter by 1,</li>
+	    <li>(optionally) performs peer oscillation damping if the
+	        DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>changes its state to Idle.</li>
+	  </ul>
+
+	  <t>If the FSM is NOT in the OpenSentBfdUpPending sub-state or the
+	  OpenSentConfirmedBfdUpPending sub-state, the local system:</t>
+
           <t>When an OPEN message is received, all fields are checked for
           correctness.  If there are no errors in the OPEN message (Event
           19), the local system:</t>
