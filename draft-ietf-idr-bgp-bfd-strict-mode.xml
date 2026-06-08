@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-16"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-17"
      ipr="trust200902"
      obsoletes=""
      updates="4271"
@@ -30,7 +30,7 @@
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-16"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-17"/>
     <author initials="M" surname="Zheng" fullname="Mercia Zheng">
       <organization>Ciena</organization>
       <address>
@@ -56,17 +56,9 @@
       </address>
     </author>
     <author initials="J" surname="Haas" fullname="Jeffrey Haas">
-      <organization>Juniper Networks, Inc.</organization>
+      <organization>HPE</organization>
       <address>
-        <postal>
-          <street>1133 Innovation Way</street>
-          <city>Sunnyvale</city>
-          <region>CA</region>
-          <code>94089</code>
-          <country>USA</country>
-        </postal>
-        <phone/>
-        <email>jhaas@juniper.net</email>
+        <email>jeffrey.haas@hpe.com</email>
       </address>
     </author>
     <author initials="A" surname="Fu" fullname="Albert Fu">
@@ -356,6 +348,7 @@
           <li>ConnectDelayOpenBfdUpPending</li>
           <li>ActiveDelayOpenBfdUpPending</li>
           <li>OpenSentBfdUpPending</li>
+	  <li>OpenSentConfirmedBfdUpPending</li>
         </ul>
 
         <t>If BFD strict-mode configuration is changed once the BGP FSM has
@@ -723,18 +716,33 @@
              the BfdAdminDown event (Event TBD-X),
              the Bfd_Disabled event (Event TBD-X),
              or the BfdUp event (Event TBD-X),
-             and the FSM is in the OpenSentBfdUpPending sub-state, the local
-             system:</t>
+	     and the FSM is in the OpenSentBfdUpPending or the
+	     OpenSentConfirmedBfdUpPending sub-states, the local system:</t>
 
           <ul>
             <li>sends a KEEPALIVE message, and</li>
             <li>sets a KeepaliveTimer (via the text below)</li>
             <li>resets the BfdHoldTimer value to zero,</li>
-            <li>changes its state to OpenConfirm (leaves OpenSentBfdUpPending).</li>
+	    <li>
+	      <t>If the FSM is in the OpenSentBfdUpPending sub-state, the local
+	         system:</t>
+	      <ul>
+		<li>changes its state to OpenConfirm (leaves OpenSentBfdUpPending).</li>
+	      </ul>
+	    </li>
+	    <li>
+	      <t>Otherwise, if the FSM is in the OpenSentConfirmedBfdUpPending
+	         sub-state, the local system:</t>
+	      <ul>
+		<li>resets the HoldTimer to the negotiated value, and,</li>
+		<li>changes its state to Established
+		    (leaves OpenSentConfirmedBfdUpPending).</li>
+	      </ul>
+	    </li>
           </ul>
           
-          <t>If the FSM is not in the OpenSentBfdUpPending sub-state, the
-             local system:</t>
+	  <t>If the FSM is not in the OpenSentBfdUpPending or
+	     OpenSentConfirmedBfdUpPending sub-states, the local system:</t>
           <ul>
             <li>stays in the OpenSent state.</li>
           </ul>
@@ -747,11 +755,13 @@
           <ul>
             <li><t>if BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, the local system:</t>
               <ul>
-                <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
+		<li>sends a NOTIFICATION message with the error code Cease (6)
+		    and error subcode BFD Down (10),</li>
                 <li>drops the TCP connection,</li>
                 <li>releases all BGP resources,</li>
                 <li>sets ConnectRetryCounter to zero,</li>
-                <li>stops the ConnectRetryTimer and sets ConnectRetryTimer to zero, and</li>
+		<li>stops the ConnectRetryTimer and sets ConnectRetryTimer to
+		    zero, and</li>
                 <li>changes its state to Idle.</li>
               </ul>
             </li>
@@ -770,11 +780,13 @@
 
           <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
           <ul>
-            <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
+	    <li>sends a NOTIFICATION message with the error code Cease (6) and
+	        error subcode BFD Down (10),</li>
             <li>drops the TCP connection,</li>
             <li>releases all BGP resources,</li>
             <li>increments the ConnectRetryCounter,</li>
-            <li>(optionally) performs peer oscillation damping if the DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>(optionally) performs peer oscillation damping if the
+	        DampPeerOscillations attribute is set to TRUE, and</li>
             <li>changes its state to Idle.</li>
             <!-- Common procedure for leaving the state to stop the BfdHoldTimer -->
           </ul>
@@ -788,7 +800,8 @@
 
           <!-- Procedure copies from OpenSent transitioning to Idle on Manual Stop -->
           <ul>
-            <li>sends the NOTIFICATION with an error code Cease (6), error subcode Other Configuration Change (6),</li>
+	    <li>sends the NOTIFICATION with an error code Cease (6), error
+	        subcode Other Configuration Change (6),</li>
             <li>drops the TCP connection,</li>
             <li>releases all BGP resources,</li>
             <li>sets ConnectRetryCounter to zero,</li>
@@ -811,7 +824,8 @@
             <li>sets the BGP ConnectRetryTimer to zero,</li>
             <li>sends a KEEPALIVE message, and</li>
             <li>sets a KeepaliveTimer (via the text below)</li>
-            <li>sets the HoldTimer according to the negotiated value (see Section 4.2), - changes its state to OpenConfirm.</li>
+	    <li>sets the HoldTimer according to the negotiated value (see
+	        Section 4.2), - changes its state to OpenConfirm.</li>
           </ul>
           <t>If the negotiated hold time value is zero, then the HoldTimer
           and KeepaliveTimer are not started.  If the value of the
@@ -854,6 +868,65 @@
           Autonomous System field is the same as the local Autonomous
           System number, then the connection is an "internal" connection;
           otherwise, it is an "external" connection.</t>
+        </section>
+
+        <section>
+	  <name>Handling Event 26, KeepAliveMsg</name>
+
+	  <t>When BFD strict-mode is not in use, receiving a KEEPALIVE message
+	  while in the OpenSent state is a finite state machine error.</t>
+
+	  <t>When BFD strict-mode is enabled and negotiated, and the local BGP
+	  speaker has received an OPEN message, it transitions to the
+	  OpenSentBfdUpPending sub-state waiting for BFD to move to the Up
+	  state.  While in this sub-state, the remote BFD speaker's BFD session
+	  can transition to the Up state prior to the local BFD session making
+	  a similar transition.  When that occurs, the remote BGP speaker will
+	  send its KEEPALIVE message and transition to the OpenConfirm
+	  state.</t>
+
+	  <t>When in the OpenSentBfdUpPending sub-state and a KEEPALIVE message
+	  is received, but the BFD session is not yet in the Up state, it is
+	  necessary to track that the next BGP finite state machine transition
+	  is to the Established state. This is tracked using the
+	  OpenSentConfirmedBfdUpPending sub-state.</t>
+
+	  <t>Old Text:</t>
+	  <t>In response to any other event (Events 9, 11-13, 20, 25-28), the local system:</t>
+	  <ul>
+	    <li>sends the NOTIFICATION with the Error Code Finite State Machine Error,</li>
+	    <li>sets the ConnectRetryTimer to zero,</li>
+	    <li>releases all BGP resources,</li>
+	    <li>drops the TCP connection,</li>
+	    <li>increments the ConnectRetryCounter by 1,</li>
+	    <li>(optionally) performs peer oscillation damping if the DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>changes its state to Idle.</li>
+	  </ul>
+
+	  <t>New Text:</t>
+	  <t>When a KEEPALIVE message is received, BfdEnabled is TRUE, and
+	  BfdStrictNegotiated is TRUE and the local system is in either the
+	  OpenSentBfdUpPending or OpenSentConfirmedBfdUpPending sub-states, the
+	  local system:</t>
+
+	  <ul>
+            <li>resets the HoldTimer to the negotiated value,</li>
+	    <li>transitions to the OpenSentConfirmedBfdUpPending sub-state.</li>
+	  </ul>
+
+	  <t>When a KEEPALIVE message is received, and either BfdEnabled is
+	  FALSE or BfdStrictNegotiated is FALSE, or in response to any other
+	  event (Events 9, 11-13, 20, 25, 27-28), the local system:</t>
+
+	  <ul>
+	    <li>sends the NOTIFICATION with the Error Code Finite State Machine Error,</li>
+	    <li>sets the ConnectRetryTimer to zero,</li>
+	    <li>releases all BGP resources,</li>
+	    <li>drops the TCP connection,</li>
+	    <li>increments the ConnectRetryCounter by 1,</li>
+	    <li>(optionally) performs peer oscillation damping if the DampPeerOscillations attribute is set to TRUE, and</li>
+	    <li>changes its state to Idle.</li>
+	  </ul>
 
         </section>
       </section>
