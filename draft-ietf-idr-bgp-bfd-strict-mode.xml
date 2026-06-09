@@ -1363,6 +1363,7 @@
 	  <dt>Coverage:</dt>
 	  <dd>
 	    <ul>
+	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-idle" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect" format="title"/> - Transition to Idle resetting BfdHoldTimer - Implemented.</li>
 	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
