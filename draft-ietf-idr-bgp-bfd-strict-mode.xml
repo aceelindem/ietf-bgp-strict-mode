@@ -1174,14 +1174,14 @@
       </section>
 
       <section numbered="true" toc="default">
-        <name>BGP-4 FSM Session Attributes Sub-Registries</name>
+        <name>BGP-4 FSM Optional Session Attributes Sub-Registries</name>
 
 	<t>This document defines new BGP finite state machine session
 	attributes.  <xref target="I-D.ietf-idr-bgp-fsm-iana"/> manages these
 	new registrations.</t>
 
 	<table align="left">
-	  <name>FSM Session Attributes</name>
+	  <name>BGP-4 FSM Optional Session Attributes</name>
 	  <thead>
 	    <tr>
 	      <th>Value</th>
@@ -1227,7 +1227,7 @@
 	registrations.</t>
 
 	<table align="left">
-	  <name>FSM Session Events</name>
+	  <name>BGP-4 FSM Events</name>
 	  <thead>
 	    <tr>
 	      <th>Value</th>
