@@ -364,7 +364,7 @@
            <xref target="RFC4271" section="8.2.2"/>:</t>
       </section>
 
-      <section>
+      <section anchor="fsm-idle">
         <name>Changes to the Idle State</name>
 
         <t>In the "Idle State", the BfdAdminDown, BfdDown, BfdUp,
@@ -375,12 +375,12 @@
            only would occur as an error in the FSM implementation.</t>
       </section>
 
-      <section>
+      <section anchor="fsm-connect">
         <name>Changes to the Connect State</name>
 
         <t>The BfdHoldTimer is reset to zero and stopped on any transition to the Idle state.</t>
 
-        <section>
+        <section anchor="fsm-connect-bfd-admindown-disabled-up">
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the 
@@ -409,7 +409,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-connect-bfd-down">
           <name>Handling BfdDown</name>
 
           <t>The BfdDown event (Event 31) is ignored while in the Connect
@@ -421,7 +421,7 @@
              machine.</t>
         </section>
 
-        <section>
+        <section anchor="fsm-connect-bfd-holdtimer-expires">
           <name>Handling BfdHoldTimer_Expires</name>
 
           <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
@@ -438,7 +438,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-connect-bfd-strict-configchanged">
           <name>Handling BfdStrict_ConfigChanged</name>
 
           <t>In response to the BfdStrict_ConfigChanged event (Event 35)
@@ -455,7 +455,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-connect-bgpopen-delaytimer">
           <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
           <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
@@ -556,13 +556,13 @@
         </section>
       </section>
 
-      <section>
+      <section anchor="fsm-active">
         <name>Changes to the Active State</name>
         <!-- the text here is effectively identical to the Connect state -->
 
         <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
-        <section>
+        <section anchor="fsm-active-bfd-admindown-disabled-up">
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the
@@ -591,7 +591,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-active-bfd-down">
           <name>Handling BfdDown</name>
 
           <t>The BfdDown event (Event 31) is ignored while in the Active
@@ -603,7 +603,7 @@
              machine.</t>
         </section>
 
-        <section>
+        <section anchor="fsm-active-bfd-holdtimer-expires">
           <name>Handling BfdHoldTimer_Expires</name>
 
           <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
@@ -620,7 +620,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-active-bfd-strict-configchanged">
           <name>Handling BfdStrict_ConfigChanged</name>
 
           <t>In response to the BfdStrict_ConfigChanged event (Event 35),
@@ -637,7 +637,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-active-bgpopen-delaytimer">
           <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
           <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
@@ -738,12 +738,12 @@
         </section>
       </section>
 
-      <section>
+      <section anchor="fsm-opensent">
         <name>Changes to the OpenSent State</name>
 
         <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
-        <section>
+        <section anchor="fsm-opensent-bfd-admindown-disabled-up">
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the 
@@ -782,7 +782,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-opensent-bfd-down">
           <name>Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31):</t>
@@ -807,7 +807,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-opensent-bfd-holdtimer-expires">
           <name>Handling BfdHoldTimer_Expires</name>
 
           <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
@@ -826,7 +826,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-opensent-bfd-strict-configchanged">
           <name>Handling BfdStrict_ConfigChanged</name>
 
           <t>In response to the BfdStrict_ConfigChanged event (Event 35),
@@ -845,7 +845,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-opensent-bgp-open">
           <name>Handling Event 19, BGPOpen</name>
 
           <t>Old Text:</t>
@@ -923,7 +923,7 @@
           otherwise, it is an "external" connection.</t>
         </section>
 
-        <section>
+        <section anchor="fsm-opensent-bgp-keepalive">
 	  <name>Handling Event 26, KeepAliveMsg</name>
 
 	  <t>When BFD strict-mode is not in use, receiving a KEEPALIVE message
@@ -984,17 +984,17 @@
         </section>
       </section>
 
-      <section>
+      <section anchor="fsm-openconfirm">
         <name>Changes to the OpenConfirm State</name>
 
-        <section>
+        <section anchor="fsm-openconfirm-bfd-admindown-disabled-up">
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are
              ignored in the OpenConfirm state.</t>
         </section>
 
-        <section>
+        <section anchor="fsm-openconfirm-bfd-down">
           <name>Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31):</t>
@@ -1017,7 +1017,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-openconfirm-bfd-strict-configchanged">
           <name>Handling BfdStrict_ConfigChanged</name>
 
           <t>In response to the BfdStrict_ConfigChanged event (Event 35),
@@ -1035,17 +1035,17 @@
         </section>
       </section>
 
-      <section>
+      <section anchor="fsm-established">
         <name>Changes to the Established State</name>
 
-        <section>
+        <section anchor="fsm-established-bfd-admindown-disabled-up">
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>The BfdAdminDown, Bfd_Disabled, and BfdUp events are ignored in
              the Established state.</t>
         </section>
 
-        <section>
+        <section anchor="fsm-established-bfd-down">
           <name>Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31), the local
@@ -1062,7 +1062,7 @@
           </ul>
         </section>
 
-        <section>
+        <section anchor="fsm-established-bfd-strict-configchanged">
           <name>Handling BfdStrict_ConfigChanged / BfdHoldTimer_Expires</name>
 
           <t>The BfdStrict_ConfigChange event is ignored
@@ -1305,5 +1305,105 @@
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9384.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/draft-ietf-idr-bgp-fsm-iana.xml"/>
     </references>
+    <references>
+      <name>Informative References</name>
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7942.xml"/>
+    </references>
+
+    <section>
+      <name>Implementation Status</name>
+
+      <t>Note to the RFC Editor: This section may be removed upon publication as an RFC.</t>
+
+      <t>This section documents the <xref target="RFC7942"/> implementation status of this document.</t>
+
+       <!--
+       -  The organization responsible for the implementation, if any.
+
+       -  The implementation's name and/or a link to a web page where the
+	  implementation or a description of it can be found.
+
+       -  A brief general description.
+
+       -  The implementation's level of maturity: research, prototype,
+	  alpha, beta, production, widely used, etc.
+
+       -  Coverage: which parts of the protocol specification are
+	  implemented.
+
+       -  Version compatibility: what version/versions of the Internet-Draft
+	  are known to be implemented.
+
+       -  Licensing: the terms under which the implementation can be used.
+	  For example: proprietary, royalty licensing, freely distributable
+	  with acknowledgement (BSD style), freely distributable with
+	  requirement to redistribute source (General Public License (GPL)
+	  style), and other (specify).
+
+       -  Implementation experience: any useful information the implementers
+	  want to share with the community.
+
+       -  Contact information: ideally a person's name and email address,
+	  but possibly just a URL or mailing list.
+
+       -  The date when information about this particular implementation was
+	  last updated.
+      -->
+
+      <section title="HPE / Juniper Networks">
+	<dl newline="true">
+	  <dt>Organization:</dt>
+	  <dd>HPE / Juniper Networks</dd>
+	  <dt>Implementation Name:</dt>
+	  <dd>Junos 23.2R1 and later</dd>
+	  <dt>Description:</dt>
+	  <dd>Juniper BFD strict mode for BGP peer sessions</dd>
+	  <dt>Maturity:</dt>
+	  <dd>Used.</dd>
+	  <dt>Coverage:</dt>
+	  <dd>
+	    <ul>
+	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-idle" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect" format="title"/> - Transition to Idle resetting BfdHoldTimer - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-holdtimer-expires" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bgpopen-delaytimer" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active" format="title"/> - Transition to Idle resetting BfdHoldTimer - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-holdtimer-expires" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bgpopen-delaytimer" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-opensent" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-opensent-bfd-admindown-disabled-up" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bfd-down" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bfd-holdtimer-expires" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bfd-strict-configchanged" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bgp-open" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bgp-keepalive" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-openconfirm-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-openconfirm-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-openconfirm-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	    </ul>
+	  </dd>
+	  <dt>Version Compatibility:</dt>
+	  <dd>draft-ietf-idr-bgp-bfd-strict-mode-17</dd>
+	  <dt>Licensing:</dt>
+	  <dd>Proprietary</dd>
+	  <dt>Implementation Experience:</dt>
+	  <dd></dd>
+	  <dt>Contact Information:</dt>
+	  <dd>Jeffrey Haas - jeffrey.haas@hpe.com</dd>
+	  <dt>Last Updated:</dt>
+	  <dd>June 2026</dd>
+	</dl>
+      </section>
+    </section>
   </back>
 </rfc>
