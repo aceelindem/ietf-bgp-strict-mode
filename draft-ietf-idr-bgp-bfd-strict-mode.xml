@@ -136,22 +136,22 @@
 
       <t>Defined in this document:</t>
       <dl newline="true">
-      <dt>TBD-X) BfdEnabled:</dt>
+      <dt>16) BfdEnabled:</dt>
       <dd>A boolean value that is TRUE when BFD is configured and enabled
           for this BGP session.</dd>
-      <dt>TBD-X) BfdStrictEnabled:</dt>
+      <dt>17) BfdStrictEnabled:</dt>
       <dd>A boolean value that is TRUE when BGP BFD Strict-Mode procedures
           are to be used when BFD is enabled for this BGP session.  If
           BfdEnabled is not TRUE for this BGP session, this attribute has no
           impact.</dd>
-      <dt>TBD-X) BfdHoldTime:</dt>
+      <dt>18) BfdHoldTime:</dt>
       <dd>Hold time value used for the BfdHoldTimer.  The default value for
           this attribute is 30 seconds and is user configurable.</dd>
-      <dt>TBD-X) BfdHoldTimer:</dt>
+      <dt>19) BfdHoldTimer:</dt>
       <dd>Hold timer used when the BGP HoldTime has been negotiated to zero
           to ensure the BGP session terminates if the associated BFD session
           does not enter the Up state.</dd>
-      <dt>TBD-X) BfdStrictNegotiated:</dt>
+      <dt>20) BfdStrictNegotiated:</dt>
       <dd>A boolean value that is TRUE when the BFD strict-mode feature
           capability has been successfully negotiated for this BGP session.
           (See <xref target="capability-negotiation"/>.)</dd>
@@ -170,7 +170,7 @@
       <name>BGP FSM Events for BFD Strict-Mode</name>
 
       <dl newline="true">
-      <dt>Event TBD-X: BfdAdminDown</dt>
+      <dt>Event 30: BfdAdminDown</dt>
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -186,7 +186,7 @@
         </dl>
       </dd>
 
-      <dt>Event TBD-X: BfdDown</dt>
+      <dt>Event 31: BfdDown</dt>
 
       <dd>
         <dl newline="true">
@@ -202,7 +202,7 @@
         </dl>
       </dd>
 
-      <dt>Event TBD-X: BfdUp</dt>
+      <dt>Event 32: BfdUp</dt>
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -218,7 +218,7 @@
         </dl>
       </dd>
 
-      <dt>Event TBD-X: Bfd_Disabled</dt>
+      <dt>Event 33: Bfd_Disabled</dt>
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -232,7 +232,7 @@
         </dl>
       </dd>
 
-      <dt>Event TBD-X: BfdHoldTimer_Expires</dt>
+      <dt>Event 34: BfdHoldTimer_Expires</dt>
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -253,7 +253,7 @@
         </dl>
       </dd>
 
-      <dt>Event TBD-X: BfdStrict_ConfigChanged</dt>
+      <dt>Event 35: BfdStrict_ConfigChanged</dt>
       <dd>
         <dl newline="true">
         <dt>Definition:</dt>
@@ -384,9 +384,9 @@
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the 
-          BfdAdminDown event (Event TBD-X),
-          the Bfd_Disabled event (Event TBD-X),
-          or the BfdUp event (Event TBD-X) the
+          BfdAdminDown event (Event 30),
+          the Bfd_Disabled event (Event 33),
+          or the BfdUp event (Event 32) the
           the local system checks to see if it is in the
           ConnectDelayOpenBfdUpPending sub-state.  If the FSM is in the 
           ConnectDelayOpenBfdUpPending sub-state, the local system:</t>
@@ -412,7 +412,7 @@
         <section>
           <name>Handling BfdDown</name>
 
-          <t>The BfdDown event (Event TBD-X) is ignored while in the Connect
+          <t>The BfdDown event (Event 31) is ignored while in the Connect
              state.</t>
 
           <t>A BFD session can transition to Down from the Init state,
@@ -424,7 +424,7 @@
         <section>
           <name>Handling BfdHoldTimer_Expires</name>
 
-          <t>In response to the BfdHoldTimer_Expires event (Event TBD-X), the local system:</t>
+          <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
 
           <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
           <ul>
@@ -441,7 +441,7 @@
         <section>
           <name>Handling BfdStrict_ConfigChanged</name>
 
-          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X)
+          <t>In response to the BfdStrict_ConfigChanged event (Event 35)
              the local system:</t>
 
           <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
@@ -566,9 +566,9 @@
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the
-          BfdAdminDown event (Event TBD-X),
-          the Bfd_Disabled event (Event TBD-X),
-          or the BfdUp event (Event TBD-X),
+          BfdAdminDown event (Event 30),
+          the Bfd_Disabled event (Event 33),
+          or the BfdUp event (Event 32),
           the local system checks to see if it is in the
           ActiveDelayOpenBfdUpPending sub-state.  If the FSM is in the
           ActiveDelayOpenBfdUpPending sub-state, the local system:</t>
@@ -594,7 +594,7 @@
         <section>
           <name>Handling BfdDown</name>
 
-          <t>The BfdDown event (Event TBD-X) is ignored while in the Active
+          <t>The BfdDown event (Event 31) is ignored while in the Active
              state.</t>
 
           <t>A BFD session can transition to Down from the Init state,
@@ -606,7 +606,7 @@
         <section>
           <name>Handling BfdHoldTimer_Expires</name>
 
-          <t>In response to the BfdHoldTimer_Expires event (Event TBD-X), the local system:</t>
+          <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
 
           <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
           <ul>
@@ -623,7 +623,7 @@
         <section>
           <name>Handling BfdStrict_ConfigChanged</name>
 
-          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+          <t>In response to the BfdStrict_ConfigChanged event (Event 35),
              the local system:</t>
 
           <!-- Procedure copies from Connect transitioning to Idle on Manual Stop -->
@@ -747,9 +747,9 @@
           <name>Handling BfdAdminDown / Bfd_Disabled / BfdUp</name>
 
           <t>In response to the 
-             the BfdAdminDown event (Event TBD-X),
-             the Bfd_Disabled event (Event TBD-X),
-             or the BfdUp event (Event TBD-X),
+             the BfdAdminDown event (Event 30),
+             the Bfd_Disabled event (Event 33),
+             or the BfdUp event (Event 32),
 	     and the FSM is in the OpenSentBfdUpPending or the
 	     OpenSentConfirmedBfdUpPending sub-states, the local system:</t>
 
@@ -785,7 +785,7 @@
         <section>
           <name>Handling BfdDown</name>
 
-          <t>In response to the BfdDown event (Event TBD-X):</t>
+          <t>In response to the BfdDown event (Event 31):</t>
           <ul>
             <li><t>if BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, the local system:</t>
               <ul>
@@ -810,7 +810,7 @@
         <section>
           <name>Handling BfdHoldTimer_Expires</name>
 
-          <t>In response to the BfdHoldTimer_Expires event (Event TBD-X), the local system:</t>
+          <t>In response to the BfdHoldTimer_Expires event (Event 34), the local system:</t>
 
           <!-- Procedure copied from OpenSent transitioning to Idle on holdtime expires -->
           <ul>
@@ -829,7 +829,7 @@
         <section>
           <name>Handling BfdStrict_ConfigChanged</name>
 
-          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+          <t>In response to the BfdStrict_ConfigChanged event (Event 35),
              the local system:</t>
 
           <!-- Procedure copies from OpenSent transitioning to Idle on Manual Stop -->
@@ -997,7 +997,7 @@
         <section>
           <name>Handling BfdDown</name>
 
-          <t>In response to the BfdDown event (Event TBD-X):</t>
+          <t>In response to the BfdDown event (Event 31):</t>
           <ul>
             <li><t>if BfdEnabled is TRUE, and BfdStrictNegotiated is TRUE, the local system:</t>
               <ul>
@@ -1020,7 +1020,7 @@
         <section>
           <name>Handling BfdStrict_ConfigChanged</name>
 
-          <t>In response to the BfdStrict_ConfigChanged event (Event TBD-X),
+          <t>In response to the BfdStrict_ConfigChanged event (Event 35),
              the local system:</t>
 
           <ul>
@@ -1048,7 +1048,7 @@
         <section>
           <name>Handling BfdDown</name>
 
-          <t>In response to the BfdDown event (Event TBD-X), the local
+          <t>In response to the BfdDown event (Event 31), the local
              system:</t>
           <ul>
             <li>sends a NOTIFICATION message with the error code Cease (6) and error subcode BFD Down (10),</li>
@@ -1164,10 +1164,123 @@
     </section>
     <section numbered="true" toc="default">
       <name>IANA Considerations</name>
-      <t>
-        This document defines the BFD Strict-Mode Capability. The Capability Code 74 has been assigned from
-        the First-Come-First-Served range (64-238) of the Capability Codes registry.
-      </t>
+
+      <section numbered="true" toc="default">
+        <name>BGP BFD Strict-Mode Capability</name>
+	<t>
+	  This document defines the BFD Strict-Mode Capability. The Capability Code 74 has been assigned from
+	  the First-Come-First-Served range (64-238) of the Capability Codes registry.
+	</t>
+      </section>
+
+      <section numbered="true" toc="default">
+        <name>BGP-4 FSM Optional Session Attributes Sub-Registries</name>
+
+	<t>This document defines new BGP finite state machine session
+	attributes.  <xref target="I-D.ietf-idr-bgp-fsm-iana"/> manages these
+	new registrations.</t>
+
+	<table align="left">
+	  <name>BGP-4 FSM Optional Session Attributes</name>
+	  <thead>
+	    <tr>
+	      <th>Value</th>
+	      <th>Name</th>
+	      <th>Reference</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	   <tr>
+	     <td>16</td>
+	     <td>BfdEnabled</td>
+	     <td>This Document</td>
+	   </tr>
+	   <tr>
+	     <td>17</td>
+	     <td>BfdStrictEnabled</td>
+	     <td>This Document</td>
+	   </tr>
+	   <tr>
+	     <td>18</td>
+	     <td>BfdHoldTime</td>
+	     <td>This Document</td>
+	   </tr>
+	   <tr>
+	     <td>19</td>
+	     <td>BfdHoldTimer</td>
+	     <td>This Document</td>
+	   </tr>
+	   <tr>
+	     <td>20</td>
+	     <td>BfdStrictNegotiated</td>
+	     <td>This Document</td>
+	   </tr>
+	  </tbody>
+	</table>
+      </section>
+
+      <section numbered="true" toc="default">
+        <name>BGP-4 FSM Events Sub-Registries</name>
+
+	<t>This document defines new BGP finite state machine events.  <xref
+	target="I-D.ietf-idr-bgp-fsm-iana"/> manages these new
+	registrations.</t>
+
+	<table align="left">
+	  <name>BGP-4 FSM Events</name>
+	  <thead>
+	    <tr>
+	      <th>Value</th>
+	      <th>Name</th>
+	      <th>Event Type</th>
+	      <th>Reference</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>30</td>
+	      <td>BfdAdminDown</td>
+	      <td>BFD Protocol Event</td>
+	      <td>This Document</td>
+	    </tr>
+
+	    <tr>
+	      <td>31</td>
+	      <td>BfdDown</td>
+	      <td>BFD Protocol Event</td>
+	      <td>This Document</td>
+	    </tr>
+
+	    <tr>
+	      <td>32</td>
+	      <td>BfdUp</td>
+	      <td>BFD Protocol Event</td>
+	      <td>This Document</td>
+	    </tr>
+
+	    <tr>
+	      <td>33</td>
+	      <td>Bfd_Disabled</td>
+	      <td>Configuration</td>
+	      <td>This Document</td>
+	    </tr>
+
+	    <tr>
+	      <td>34</td>
+	      <td>BfdHoldTimer_Expires</td>
+	      <td>Timer</td>
+	      <td>This Document</td>
+	    </tr>
+
+	    <tr>
+	      <td>35</td>
+	      <td>BfdStrict_ConfigChanged</td>
+	      <td>Configuration</td>
+	      <td>This Document</td>
+	    </tr>
+	  </tbody>
+	</table>
+      </section>
     </section>
     <section numbered="true" toc="default">
       <name>Acknowledgement</name>
@@ -1180,6 +1293,7 @@
   <!--  *****BACK MATTER ***** -->
 
   <back>
+    <displayreference target="I-D.ietf-idr-bgp-fsm-iana" to="BGP-IANA-FSM"/>
     <references>
       <name>Normative References</name>
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4271.xml"/>
@@ -1189,6 +1303,7 @@
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5882.xml"/>
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9384.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/draft-ietf-idr-bgp-fsm-iana.xml"/>
     </references>
   </back>
 </rfc>
