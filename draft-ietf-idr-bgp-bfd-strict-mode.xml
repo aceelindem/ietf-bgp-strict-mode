@@ -1404,6 +1404,63 @@
 	  <dd>June 2026</dd>
 	</dl>
       </section>
+
+      <section title="Cisco">
+	<dl newline="true">
+	  <dt>Organization:</dt>
+	  <dd>Cisco</dd>
+	  <dt>Implementation Name:</dt>
+	  <dd>IOS-XR 24.31 and later</dd>
+	  <dt>Description:</dt>
+	  <dd>Cisco BFD strict mode for BGP peer sessions</dd>
+	  <dt>Maturity:</dt>
+	  <dd>Used.</dd>
+	  <dt>Coverage:</dt>
+	  <dd>
+	    <ul>
+	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
+<!-- To be completed
+	      <li><xref target="fsm-idle" format="title"/></li>
+	      <li><xref target="fsm-connect" format="title"/> - Transition to Idle resetting BfdHoldTimer</li>
+	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/></li>
+	      <li><xref target="fsm-connect-bfd-down" format="title"/></li>
+	      <li><xref target="fsm-connect-bfd-holdtimer-expires" format="title"/></li>
+	      <li><xref target="fsm-connect-bfd-strict-configchanged" format="title"/></li>
+	      <li><xref target="fsm-connect-bgpopen-delaytimer" format="title"/></li>
+	      <li><xref target="fsm-active" format="title"/> - Transition to Idle resetting BfdHoldTimer</li>
+	      <li><xref target="fsm-active-bfd-admindown-disabled-up" format="title"/></li>
+	      <li><xref target="fsm-active-bfd-down" format="title"/></li>
+	      <li><xref target="fsm-active-bfd-holdtimer-expires" format="title"/></li>
+	      <li><xref target="fsm-active-bfd-strict-configchanged" format="title"/></li>
+	      <li><xref target="fsm-active-bgpopen-delaytimer" format="title"/></li>
+	      <li><xref target="fsm-opensent" format="title"/></li>
+	      <li><xref target="fsm-opensent-bfd-admindown-disabled-up" format="title"/></li>
+	      <li><xref target="fsm-opensent-bfd-down" format="title"/></li>
+	      <li><xref target="fsm-opensent-bfd-holdtimer-expires" format="title"/></li>
+	      <li><xref target="fsm-opensent-bfd-strict-configchanged" format="title"/></li>
+	      <li><xref target="fsm-opensent-bgp-open" format="title"/></li>
+	      <li><xref target="fsm-opensent-bgp-keepalive" format="title"/></li>
+	      <li><xref target="fsm-openconfirm-bfd-admindown-disabled-up" format="title"/></li>
+	      <li><xref target="fsm-openconfirm-bfd-down" format="title"/></li>
+	      <li><xref target="fsm-openconfirm-bfd-strict-configchanged" format="title"/></li>
+	      <li><xref target="fsm-established-bfd-admindown-disabled-up" format="title"/></li>
+	      <li><xref target="fsm-established-bfd-down" format="title"/></li>
+	      <li><xref target="fsm-established-bfd-strict-configchanged" format="title"/></li>
+-->
+	    </ul>
+	  </dd>
+	  <dt>Version Compatibility:</dt>
+	  <dd>draft-ietf-idr-bgp-bfd-strict-mode-12</dd>
+	  <dt>Licensing:</dt>
+	  <dd>Proprietary</dd>
+	  <dt>Implementation Experience:</dt>
+	  <dd></dd>
+	  <dt>Contact Information:</dt>
+	  <dd>Ketan Talaulikar</dd>
+	  <dt>Last Updated:</dt>
+	  <dd>June 2026</dd>
+	</dl>
+      </section>
     </section>
   </back>
 </rfc>
