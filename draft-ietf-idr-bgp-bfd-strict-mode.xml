@@ -1410,7 +1410,7 @@
 	  <dt>Organization:</dt>
 	  <dd>Cisco</dd>
 	  <dt>Implementation Name:</dt>
-	  <dd>IOS-XR 24.31 and later</dd>
+	  <dd>IOS-XR 24.3.1 and later</dd>
 	  <dt>Description:</dt>
 	  <dd>Cisco BFD strict mode for BGP peer sessions</dd>
 	  <dt>Maturity:</dt>
