@@ -381,7 +381,7 @@
         <t>The BfdHoldTimer is reset to zero and stopped on any transition to the Idle state.</t>
 
         <section anchor="fsm-connect-bfd-admindown-disabled-up">
-          <name>Handling BfdAdminDown / BfdDisabled / BfdUp</name>
+          <name>Connect - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>In response to the 
           BfdAdminDown event (Event 30),
@@ -410,7 +410,7 @@
         </section>
 
         <section anchor="fsm-connect-bfd-down">
-          <name>Handling BfdDown</name>
+          <name>Connect - Handling BfdDown</name>
 
           <t>The BfdDown event (Event 31) is ignored while in the Connect
              state.</t>
@@ -422,7 +422,7 @@
         </section>
 
         <section anchor="fsm-connect-bfd-holdtimer-expires">
-          <name>Handling BfdHoldTimerExpires</name>
+          <name>Connect - Handling BfdHoldTimerExpires</name>
 
           <t>In response to the BfdHoldTimerExpires event (Event 34), the local system:</t>
 
@@ -439,7 +439,7 @@
         </section>
 
         <section anchor="fsm-connect-bfd-strict-configchanged">
-          <name>Handling BfdStrictConfigChanged</name>
+          <name>Connect - Handling BfdStrictConfigChanged</name>
 
           <t>In response to the BfdStrictConfigChanged event (Event 35)
              the local system:</t>
@@ -456,7 +456,7 @@
         </section>
 
         <section anchor="fsm-connect-bgpopen-delaytimer">
-          <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
+          <name>Connect - Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
           <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
           <t>In the "Connect State", the handling of Event 20, an OPEN message
@@ -563,7 +563,7 @@
         <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
         <section anchor="fsm-active-bfd-admindown-disabled-up">
-          <name>Handling BfdAdminDown / BfdDisabled / BfdUp</name>
+          <name>Active - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>In response to the
           BfdAdminDown event (Event 30),
@@ -592,7 +592,7 @@
         </section>
 
         <section anchor="fsm-active-bfd-down">
-          <name>Handling BfdDown</name>
+          <name>Active - Handling BfdDown</name>
 
           <t>The BfdDown event (Event 31) is ignored while in the Active
              state.</t>
@@ -604,7 +604,7 @@
         </section>
 
         <section anchor="fsm-active-bfd-holdtimer-expires">
-          <name>Handling BfdHoldTimerExpires</name>
+          <name>Active - Handling BfdHoldTimerExpires</name>
 
           <t>In response to the BfdHoldTimerExpires event (Event 34), the local system:</t>
 
@@ -621,7 +621,7 @@
         </section>
 
         <section anchor="fsm-active-bfd-strict-configchanged">
-          <name>Handling BfdStrictConfigChanged</name>
+          <name>Active - Handling BfdStrictConfigChanged</name>
 
           <t>In response to the BfdStrictConfigChanged event (Event 35),
              the local system:</t>
@@ -638,7 +638,7 @@
         </section>
 
         <section anchor="fsm-active-bgpopen-delaytimer">
-          <name>Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
+          <name>Active - Handling Event 20, BGPOpen with DelayOpenTimer running.</name>
 
           <!-- XXX JMH - there's an implicit "and the open is acceptable" that's not mentioned here. -->
           <t>In the "Active State", the handling of Event 20, an OPEN message
@@ -744,7 +744,7 @@
         <t>The BfdHoldTimer is reset to zero and stopped for any transition to the Idle state.</t>
 
         <section anchor="fsm-opensent-bfd-admindown-disabled-up">
-          <name>Handling BfdAdminDown / BfdDisabled / BfdUp</name>
+          <name>OpenSent - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>In response to the 
              the BfdAdminDown event (Event 30),
@@ -783,7 +783,7 @@
         </section>
 
         <section anchor="fsm-opensent-bfd-down">
-          <name>Handling BfdDown</name>
+          <name>OpenSent - Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31):</t>
           <ul>
@@ -808,7 +808,7 @@
         </section>
 
         <section anchor="fsm-opensent-bfd-holdtimer-expires">
-          <name>Handling BfdHoldTimerExpires</name>
+          <name>OpenSent - Handling BfdHoldTimerExpires</name>
 
           <t>In response to the BfdHoldTimerExpires event (Event 34), the local system:</t>
 
@@ -827,7 +827,7 @@
         </section>
 
         <section anchor="fsm-opensent-bfd-strict-configchanged">
-          <name>Handling BfdStrictConfigChanged</name>
+          <name>OpenSent - Handling BfdStrictConfigChanged</name>
 
           <t>In response to the BfdStrictConfigChanged event (Event 35),
              the local system:</t>
@@ -846,7 +846,7 @@
         </section>
 
         <section anchor="fsm-opensent-bgp-open">
-          <name>Handling Event 19, BGPOpen</name>
+          <name>OpenSent - Handling Event 19, BGPOpen</name>
 
           <t>Old Text:</t>
           <t>When an OPEN message is received, all fields are checked for
@@ -924,7 +924,7 @@
         </section>
 
         <section anchor="fsm-opensent-bgp-keepalive">
-	  <name>Handling Event 26, KeepAliveMsg</name>
+	  <name>OpenSent - Handling Event 26, KeepAliveMsg</name>
 
 	  <t>When BFD strict-mode is not in use, receiving a KEEPALIVE message
 	  while in the OpenSent state is a finite state machine error.</t>
@@ -988,14 +988,14 @@
         <name>Changes to the OpenConfirm State</name>
 
         <section anchor="fsm-openconfirm-bfd-admindown-disabled-up">
-          <name>Handling BfdAdminDown / BfdDisabled / BfdUp</name>
+          <name>OpenConfirm - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>The BfdAdminDown, BfdDisabled, and BfdUp events are
              ignored in the OpenConfirm state.</t>
         </section>
 
         <section anchor="fsm-openconfirm-bfd-down">
-          <name>Handling BfdDown</name>
+          <name>OpenConfirm - Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31):</t>
           <ul>
@@ -1018,7 +1018,7 @@
         </section>
 
         <section anchor="fsm-openconfirm-bfd-strict-configchanged">
-          <name>Handling BfdStrictConfigChanged</name>
+          <name>OpenConfirm - Handling BfdStrictConfigChanged</name>
 
           <t>In response to the BfdStrictConfigChanged event (Event 35),
              the local system:</t>
@@ -1039,14 +1039,14 @@
         <name>Changes to the Established State</name>
 
         <section anchor="fsm-established-bfd-admindown-disabled-up">
-          <name>Handling BfdAdminDown / BfdDisabled / BfdUp</name>
+          <name>Established - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>The BfdAdminDown, BfdDisabled, and BfdUp events are ignored in
              the Established state.</t>
         </section>
 
         <section anchor="fsm-established-bfd-down">
-          <name>Handling BfdDown</name>
+          <name>Established - Handling BfdDown</name>
 
           <t>In response to the BfdDown event (Event 31), the local
              system:</t>
@@ -1063,7 +1063,7 @@
         </section>
 
         <section anchor="fsm-established-bfd-strict-configchanged">
-          <name>Handling BfdStrictConfigChanged / BfdHoldTimerExpires</name>
+          <name>Established - Handling BfdStrictConfigChanged / BfdHoldTimerExpires</name>
 
           <t>The BfdStrictConfigChange event is ignored
              in the Established state.</t>
@@ -1365,13 +1365,13 @@
 	    <ul>
 	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-idle" format="title"/> - Implemented.</li>
-	      <li><xref target="fsm-connect" format="title"/> - Transition to Idle resetting BfdHoldTimer - Implemented.</li>
+	      <li><xref target="fsm-connect" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect-bfd-down" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect-bfd-holdtimer-expires" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect-bfd-strict-configchanged" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-connect-bgpopen-delaytimer" format="title"/> - Implemented.</li>
-	      <li><xref target="fsm-active" format="title"/> - Transition to Idle resetting BfdHoldTimer - Implemented.</li>
+	      <li><xref target="fsm-active" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-active-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-active-bfd-down" format="title"/> - Implemented.</li>
 	      <li><xref target="fsm-active-bfd-holdtimer-expires" format="title"/> - Implemented.</li>
@@ -1421,13 +1421,13 @@
 	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
 <!-- To be completed
 	      <li><xref target="fsm-idle" format="title"/></li>
-	      <li><xref target="fsm-connect" format="title"/> - Transition to Idle resetting BfdHoldTimer</li>
+	      <li><xref target="fsm-connect" format="title"/></li>
 	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/></li>
 	      <li><xref target="fsm-connect-bfd-down" format="title"/></li>
 	      <li><xref target="fsm-connect-bfd-holdtimer-expires" format="title"/></li>
 	      <li><xref target="fsm-connect-bfd-strict-configchanged" format="title"/></li>
 	      <li><xref target="fsm-connect-bgpopen-delaytimer" format="title"/></li>
-	      <li><xref target="fsm-active" format="title"/> - Transition to Idle resetting BfdHoldTimer</li>
+	      <li><xref target="fsm-active" format="title"/></li>
 	      <li><xref target="fsm-active-bfd-admindown-disabled-up" format="title"/></li>
 	      <li><xref target="fsm-active-bfd-down" format="title"/></li>
 	      <li><xref target="fsm-active-bfd-holdtimer-expires" format="title"/></li>
@@ -1457,6 +1457,65 @@
 	  <dd></dd>
 	  <dt>Contact Information:</dt>
 	  <dd>Ketan Talaulikar</dd>
+	  <dt>Last Updated:</dt>
+	  <dd>June 2026</dd>
+	</dl>
+      </section>
+
+      <section title="Nokia">
+	<dl newline="true">
+	  <dt>Organization:</dt>
+	  <dd>Nokia</dd>
+	  <dt>Implementation Name:</dt>
+	  <dd>Release 23.7R1</dd>
+	  <dt>Description:</dt>
+	  <dd>Strict-Mode BFD procedures for BGP</dd>
+	  <dt>Maturity:</dt>
+	  <dd>Used.</dd>
+	  <dt>Coverage:</dt>
+	  <dd>
+            <t>Nokia's implementation currently does not support the
+            BfdHoldTimer.  Coverage for this feature is planned for an upcoming
+            release.</t>
+
+	    <ul>
+	      <li><xref target="capability-negotiation" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-idle" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect" format="title"/> -  Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bfd-holdtimer-expires" format="title"/> - Not implemented.</li>
+	      <li><xref target="fsm-connect-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-connect-bgpopen-delaytimer" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bfd-holdtimer-expires" format="title"/> - Not implemented.</li>
+	      <li><xref target="fsm-active-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-active-bgpopen-delaytimer" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-opensent" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-opensent-bfd-admindown-disabled-up" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bfd-down" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bfd-holdtimer-expires" format="title"/> - Not implemented</li>
+	      <li><xref target="fsm-opensent-bfd-strict-configchanged" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bgp-open" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-opensent-bgp-keepalive" format="title"/> - Implemented</li>
+	      <li><xref target="fsm-openconfirm-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-openconfirm-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-openconfirm-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-admindown-disabled-up" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-down" format="title"/> - Implemented.</li>
+	      <li><xref target="fsm-established-bfd-strict-configchanged" format="title"/> - Implemented.</li>
+	    </ul>
+	  </dd>
+	  <dt>Version Compatibility:</dt>
+	  <dd>draft-ietf-idr-bgp-bfd-strict-mode-07</dd>
+	  <dt>Licensing:</dt>
+	  <dd>Proprietary</dd>
+	  <dt>Implementation Experience:</dt>
+	  <dd></dd>
+	  <dt>Contact Information:</dt>
+	  <dd>Scott Ralph - scott.ralph@nokia.com</dd>
 	  <dt>Last Updated:</dt>
 	  <dd>June 2026</dd>
 	</dl>
