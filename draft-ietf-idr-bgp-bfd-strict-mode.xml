@@ -14,7 +14,7 @@
 <?rfc subcompact="no"?>
 <?rfc strict="yes" ?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-18"
+     category="std" docName="draft-ietf-idr-bgp-bfd-strict-mode-19"
      ipr="trust200902"
      obsoletes=""
      updates="4271"
@@ -30,7 +30,7 @@
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="BGP BFD Strict-Mode ">BGP BFD Strict-Mode</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-18"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-bfd-strict-mode-19"/>
     <author initials="M" surname="Zheng" fullname="Mercia Zheng">
       <organization>Ciena</organization>
       <address>
@@ -1174,7 +1174,7 @@
       </section>
 
       <section numbered="true" toc="default">
-        <name>BGP-4 FSM Optional Session Attributes Sub-Registries</name>
+        <name>BGP-4 FSM Optional Session Attributes Registry</name>
 
 	<t>This document defines new BGP finite state machine session
 	attributes.  <xref target="I-D.ietf-idr-bgp-fsm-iana"/> manages these
@@ -1220,7 +1220,7 @@
       </section>
 
       <section numbered="true" toc="default">
-        <name>BGP-4 FSM Events Sub-Registries</name>
+        <name>BGP-4 FSM Events Registry</name>
 
 	<t>This document defines new BGP finite state machine events.  <xref
 	target="I-D.ietf-idr-bgp-fsm-iana"/> manages these new
