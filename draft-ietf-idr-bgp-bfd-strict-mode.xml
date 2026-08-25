@@ -118,7 +118,7 @@
             preventing BGP session establishment until both the local and remote
             speakers have an established BFD session.
             The document also specifies a BGP capability <xref target="RFC5492" format="default"/> for
-            announcing BFD parameters including a BGP speaker's support for "strict-mode"; i.e., requiring a
+            announcing a BGP speaker's support for "strict-mode"; i.e., requiring a
             BFD session for BGP session establishment.
       </t>
     </section>
@@ -325,7 +325,7 @@
         <name>Overview of BFD Strict FSM Changes</name>
 
         <t>When BFD is enabled, and BFD strict-mode is enabled and negotiated, the
-           BGP finite state machine is prevented from send a KEEPALIVE to the
+           BGP finite state machine is prevented from sending a KEEPALIVE to the
            remote BGP speaker and advancing to the OpenConfirm
            state until the associated BFD session has reached the Up state.</t>
 
@@ -338,7 +338,7 @@
                DelayOpenTimer is running.</li>
            <li>In the Active state upon receiving an OPEN message and the
                DelayOpenTimer is running.</li>
-           <li>In the OpenSent upon receiving an OPEN message.</li>
+           <li>In the OpenSent state upon receiving an OPEN message.</li>
         </ul>
 
         <t>For each of these scenarios, when BFD is enabled, and BFD strict-mode
@@ -387,7 +387,7 @@
           BfdAdminDown event (Event 30),
           the BfdDisabled event (Event 33),
           or the BfdUp event (Event 32) the
-          the local system checks to see if it is in the
+          local system checks to see if it is in the
           ConnectDelayOpenBfdUpPending sub-state.  If the FSM is in the 
           ConnectDelayOpenBfdUpPending sub-state, the local system:</t>
 
@@ -490,7 +490,7 @@
 
           <t>New Text:</t>
 
-	  <t>If the FSM is in the ActiveDelayOpenBfdUpPending sub-state, the
+	  <t>If the FSM is in the ConnectDelayOpenBfdUpPending sub-state, the
 	  reception of a second OPEN message is a FSM error.  The local
 	  system:</t>
 
@@ -505,7 +505,7 @@
 	    <li>changes its state to Idle.</li>
 	  </ul>
 
-	  <t>If the FSM is NOT in the ActiveDelayOpenBfdUpPending, the local system:</t>
+	  <t>If the FSM is NOT in the ConnectDelayOpenBfdUpPending, the local system:</t>
 
           <ul>
           <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
@@ -672,7 +672,7 @@
 
           <t>New Text:</t>
 
-	  <t>If the FSM is in the ConnectDelayOpenBfdUpPending sub-state, the
+	  <t>If the FSM is in the ActiveDelayOpenBfdUpPending sub-state, the
 	  reception of a second OPEN message is a FSM error.  The local
 	  system:</t>
 
@@ -687,7 +687,7 @@
 	    <li>changes its state to Idle.</li>
 	  </ul>
 
-	  <t>If the FSM is NOT in the ConnectDelayOpenBfdUpPending, the local system:</t>
+	  <t>If the FSM is NOT in the ActiveDelayOpenBfdUpPending, the local system:</t>
 
           <ul>
           <li>stops the ConnectRetryTimer (if running) and sets the ConnectRetryTimer to zero,</li>
@@ -747,7 +747,7 @@
           <name>OpenSent - Handling BfdAdminDown / BfdDisabled / BfdUp</name>
 
           <t>In response to the 
-             the BfdAdminDown event (Event 30),
+             BfdAdminDown event (Event 30),
              the BfdDisabled event (Event 33),
              or the BfdUp event (Event 32),
 	     and the FSM is in the OpenSentBfdUpPending or the
