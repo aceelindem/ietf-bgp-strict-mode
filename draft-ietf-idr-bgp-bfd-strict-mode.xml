@@ -308,7 +308,7 @@
       <t>Implementations SHOULD start the BFD session associated with the BGP
          BFD strict-mode session prior to the BGP FSM starting.  The motivation
          is to avoid delaying BGP FSM transitions while waiting for the BFD
-         session reach to the Up state.</t>
+         session to reach the Up state.</t>
 
       <t>When procedures for BFD hold-down for detecting BFD session stability
          (see <xref target="stability-considerations"/>) are in use,
@@ -1077,7 +1077,7 @@
       <name>Closing BGP Sessions</name>
       <t>
 	This document updates <xref target="RFC9384" section="3"/> with
-	additional conditions which the "BFD Down" subcode will be sent.  That
+	additional conditions under which the "BFD Down" subcode will be sent.  That
 	RFC previously only included the condition of a BFD session going into
 	the Down state.
       </t>
