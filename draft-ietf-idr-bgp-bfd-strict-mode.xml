@@ -291,7 +291,14 @@
       <name>BFD Strict-Mode Capability Negotiation</name>
       <t>
           A BGP speaker which supports capabilities advertisement and has BFD strict-mode enabled
+	  (which implies BFD itself is enabled)
           MUST include the BFD Strict-Mode Capability in its OPEN message.
+      </t>
+      <t>
+	  BGP speakers MAY consider BFD sessions in the AdminDown state,
+	  typically because of administrative reasons, to be equivalent of
+	  strict-mode being disabled, and not include the capability in its OPEN
+	  message.
       </t>
       <t>
           A BGP speaker which supports the BFD Strict-Mode Capability examines the list
