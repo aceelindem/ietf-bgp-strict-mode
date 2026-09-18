@@ -295,12 +295,6 @@
           MUST include the BFD Strict-Mode Capability in its OPEN message.
       </t>
       <t>
-	  BGP speakers MAY consider BFD sessions in the AdminDown state,
-	  typically because of administrative reasons, to be equivalent of
-	  strict-mode being disabled, and not include the capability in its OPEN
-	  message.
-      </t>
-      <t>
           A BGP speaker which supports the BFD Strict-Mode Capability examines the list
           of capabilities
           received from its peer. If both the local and remote BGP speakers include
